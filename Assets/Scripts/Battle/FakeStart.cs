@@ -1,10 +1,13 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class FakeStart : MonoBehaviour
+public class FakeStart : SerializedMonoBehaviour
 {
+    public CellsInfo<bool> FakeCellsInfo;
+    
     void Start()
     {
-        StomachManager.Instance.GenerateCells(new CellsInfo<bool>(5, 5, _ => true));
+        StomachManager.Instance.GenerateCells(FakeCellsInfo);
     }
 }
