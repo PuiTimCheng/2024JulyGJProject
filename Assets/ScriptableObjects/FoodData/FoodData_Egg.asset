@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a813d1a02f9e4c0d93ba7da9ad20942f, type: 3}
-  m_Name: FoodData_Noodle
+  m_Name: FoodData_Egg
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,25 +26,19 @@ MonoBehaviour:
       Data: 0|CellsInfo`1[[System.Boolean, mscorlib]], Assembly-CSharp
     - Name: Width
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: Height
       Entry: 3
-      Data: 4
+      Data: 1
     - Name: Cells
       Entry: 7
       Data: 1|System.Boolean[,], mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 2
     - Name: ranks
       Entry: 1
-      Data: 1|4
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
+      Data: 2|1
     - Name: 
       Entry: 5
       Data: true
@@ -61,6 +55,6 @@ MonoBehaviour:
       Entry: 8
       Data: 
   foodScore: 0
-  stage1: {fileID: 21300000, guid: e0c996e3bf17b324fa922b5c08a74661, type: 3}
+  stage1: {fileID: 21300000, guid: 9e2f82acfda59a04fa40d4afaa13d92c, type: 3}
   stage2: {fileID: 21300000, guid: e0c996e3bf17b324fa922b5c08a74661, type: 3}
   plateSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

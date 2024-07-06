@@ -2585,7 +2585,7 @@ MonoBehaviour:
   conveyorSpeed: 1
   uvRectSpeedMultiplier: 1
   foodSpeedMultiplier: 480
-  spawnFoodPerSecond: 5
+  spawnFoodPerSecond: 2
 --- !u!1001 &1392464719
 PrefabInstance:
   m_ObjectHideFlags: 0

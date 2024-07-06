@@ -32,6 +32,41 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac8f6fba83682824abf089e93c3a00d9
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Rice.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c05b9cbdf636ec4989f56e85956fe6f
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Sausage.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35a921cfe40e4a44ab12a67ea5ad4b08
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_WatermelonSlice.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 291c7c94940eac2459971c6fe0ecd80a
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Prawn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30d9a6465f1032b488a4b927efc37de2
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Beef.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4501433a52e560468cb8ffa5010dfca
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Cake.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a29bf2d780d409f488b582c80c57c522
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Egg.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f47653868397c9042b135840c82114fb, type: 2}
   m_SchemaSet:

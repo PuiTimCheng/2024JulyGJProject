@@ -17,6 +17,7 @@ namespace Battle
         {
             _data = data;
             _img.sprite = data.stage1;
+            _img.SetNativeSize();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -62,21 +63,12 @@ namespace Battle
 
 public enum FoodName
 {
+    Beef,
+    Cake,
+    Egg,
     Noodle,
-    //Sausage,
-    //Tempura,
-    //Watermelon,
-    //Beef,
-    //PizzaSlice,
-    //Shrimp,
-    //Egg,
-    //Rice,
-    //Potato,
-    //Fish,
-    //Broccoli,
-    //Seaweed,
-    //Bread,
-    //Mushroom,
-    //Tomato,
-    //Chicken,
+    Prawn,
+    Rice,
+    Sausage,
+    WatermelonSlice
 }
