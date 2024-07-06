@@ -105,7 +105,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
                     StomachManager.Instance.Cells.DestroyCellByType(formula.combineFood);
                     food._img.sprite = formula.finalFoodSprite;
                     food._data.foodName = formula.finalFood;
-                    GameCanvasUIManager.Instance.uIEffectManager.Burst(food.transform.localPosition);
+                    GameCanvasUIManager.Instance.uIEffectManager.Burst(food.transform.localPosition, formula.finalFood);
                     return true;
                 }
             }
