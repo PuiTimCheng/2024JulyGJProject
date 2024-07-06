@@ -10,6 +10,7 @@ namespace Battle
     [CreateAssetMenu(fileName = "FoodData", menuName = "Data/FoodData", order = 1)]
     public class FoodData : SerializedScriptableObject
     {
+        public int foodScore;
         [ShowInInspector] public CellsInfo<bool> GridConfig;
         [PreviewField] public Sprite stage1;
         [PreviewField] public Sprite stage2;
