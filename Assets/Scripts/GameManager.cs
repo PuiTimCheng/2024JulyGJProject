@@ -17,18 +17,32 @@ public class GameManager : PersistentSingleton<GameManager>
     protected override void InitializeSingleton()
     {
         base.InitializeSingleton();
-        //Load Food Configs
         FoodNameToConfigs = new Dictionary<FoodName, FoodData>();
-        
-        //load using addressable
-        platePrefab =  Addressables.LoadAssetAsync<GameObject>("Assets/Prefab/Plate.prefab").WaitForCompletion();
-        
+    
+        platePrefab = Addressables.LoadAssetAsync<GameObject>("Assets/Prefab/Plate.prefab").WaitForCompletion();
+    
         var foodNames = Enum.GetNames(typeof(FoodName));
         foreach (var foodName in foodNames)
         {
             var path = $"Assets/ScriptableObjects/FoodData/FoodData_{foodName}.asset";
-            FoodData data = Addressables.LoadAssetAsync<FoodData>(path).WaitForCompletion();
-            if(data) FoodNameToConfigs.Add(Enum.Parse<FoodName>(foodName), data);
+            CheckAndLoadFoodData(path, foodName);
+        }
+    }
+
+    private async void CheckAndLoadFoodData(string path, string foodName)
+    {
+        var locations = await Addressables.LoadResourceLocationsAsync(path).Task;
+        if (locations.Count > 0)
+        {
+            FoodData data = await Addressables.LoadAssetAsync<FoodData>(path).Task;
+            if (data != null)
+            {
+                FoodName parsedFoodName;
+                if (Enum.TryParse<FoodName>(foodName, out parsedFoodName))
+                {
+                    FoodNameToConfigs.Add(parsedFoodName, data);
+                }
+            }
         }
     }
 

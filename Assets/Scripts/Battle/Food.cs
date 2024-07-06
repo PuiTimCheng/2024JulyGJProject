@@ -15,7 +15,7 @@ namespace Battle
         public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
         private Plate _fromPlate;
         
-        FoodData _data;
+        public FoodData _data;
         float _curTime;
         int _curPhase;
         bool _digesting;
