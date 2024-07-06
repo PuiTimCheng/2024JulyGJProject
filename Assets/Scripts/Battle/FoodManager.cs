@@ -1,4 +1,5 @@
 using System.Linq;
+using TimToolBox.Extensions;
 using UnityEngine;
 
 namespace Battle
@@ -66,11 +67,11 @@ namespace Battle
                     var pos = Vector3.zero;
                     foreach (var cor in allCells)
                     {
-                        pos += stomach.GetItem(cor).transform.position;
+                        pos += stomach.GetItem(cor).GetComponent<RectTransform>().position;
                     }
                     pos /= allCells.Count;
 
-                    _curDraggingFood.transform.position = pos;
+                    _curDraggingFood.GetComponent<RectTransform>().position = pos;
                 }
                 
                 /*if (canPlace)
@@ -89,7 +90,7 @@ namespace Battle
             }
             else
             {
-                _curDraggingFood.transform.position = Input.mousePosition;
+                _curDraggingFood.GetComponent<RectTransform>().position = Camera.main.ScreenToWorldPoint(Input.mousePosition).Set(z:0);
             }
         }
 
@@ -111,10 +112,10 @@ namespace Battle
                     var pos = Vector3.zero;
                     foreach (var cor in allCells)
                     {
-                        pos += stomach.GetItem(cor).transform.position;
+                        pos += stomach.GetItem(cor).GetComponent<RectTransform>().position;
                     }
                     pos /= allCells.Count;
-                    _curDraggingFood.transform.position = pos;
+                    _curDraggingFood.GetComponent<RectTransform>().position = pos;
                     
                     /*var pos = Vector3.zero;
 
@@ -126,7 +127,6 @@ namespace Battle
                     
                     _curDraggingFood.StartDigest();
 
-                    _curDraggingFood.transform.position = pos;
                     _curDraggingFood.SetParentCells(eligibleCells);
 
 

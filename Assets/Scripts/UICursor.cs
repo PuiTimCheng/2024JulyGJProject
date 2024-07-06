@@ -19,7 +19,7 @@ public class UICursor : MonoBehaviour
 
     private void Update()
     {
-        Vector2 cursorPos = Input.mousePosition;
+        Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _uiCursor.position = cursorPos;
 
         if (Input.GetMouseButtonDown(0))

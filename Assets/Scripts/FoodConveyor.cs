@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using DG.Tweening;
 using ImprovedTimers;
 using TimToolBox.Extensions;
 using UnityEngine.Serialization;
@@ -57,15 +58,20 @@ public class FoodConveyor : MonoBehaviour
             var yOffset = Mathf.Lerp(0, spawnRectTransform.rect.height, (float)_random.NextDouble()) - spawnRectTransform.rect.height/2f;
             plate.transform.position = spawnRectTransform.position.Offset(y:yOffset);
             plate.transform.SetParent(spawnedFoodParent);
+            var rect = plate.GetComponent<RectTransform>();
+            rect.anchoredPosition = new Vector2(800, 45);
+            rect.localScale = Vector3.one;
             
             _spawnTimer.Reset(spawnFoodInterval/ conveyorSpeed);    
             _spawnTimer.Start();    
         }
-        
+
         //move all food
         foreach (var food in spawnedFoodParent.Children())
         {
-            food.position = food.position.Offset(x: Time.deltaTime * -conveyorSpeed * foodSpeedMultiplier);
+            var rectTrans = food.GetComponent<RectTransform>();
+            rectTrans.anchoredPosition = rectTrans.anchoredPosition.Offset(x: Time.deltaTime * -conveyorSpeed * foodSpeedMultiplier);
+            //food.position = food.position.Offset(x: Time.deltaTime * -conveyorSpeed * foodSpeedMultiplier);
         }
         
         //despawn food
