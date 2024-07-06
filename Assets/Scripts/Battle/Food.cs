@@ -58,6 +58,7 @@ namespace Battle
         public void StartDigest()
         {
             Debug.Log($"Start Disgest ");
+            _img.raycastTarget = false;
             _curTime = 0;
             _curPhase = 0;
             _digesting = true;

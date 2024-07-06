@@ -21,11 +21,9 @@ namespace Battle
 
             for (int i = 0; i < data.GridConfig.Count; i++)
             {
-                var newCell = Instantiate(_prefab, _group.transform);
-                if (newCell.TryGetComponent<Image>(out var img))
-                {
-                    img.enabled = data.GridConfig.GetItem(i);
-                }
+                var newCell = Instantiate(_prefab, _group.transform).GetComponent<Cell>();
+                Debug.Log($"{data.name}, {i} {data.GridConfig.GetItem(i)}");
+                newCell.SetCellState(data.GridConfig.GetItem(i)? CellState.Empty : CellState.Inactive);
             }
         }
     }
