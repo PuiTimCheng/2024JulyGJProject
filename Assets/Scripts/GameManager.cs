@@ -38,7 +38,7 @@ public class GameManager : PersistentSingleton<GameManager>
         var locations = await Addressables.LoadResourceLocationsAsync(path).Task;
         if (locations.Count > 0)
         {
-            FoodData data = await Addressables.LoadAssetAsync<FoodData>(path).Task;
+            var data = await Addressables.LoadAssetAsync<FoodData>(path).Task;
             if (data != null)
             {
                 FoodName parsedFoodName;

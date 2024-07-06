@@ -67,7 +67,6 @@ MonoBehaviour:
   Phase0Time: 0
   Phase1Time: 0
   foodFormulas:
-  - combineFood: 11
-    finalFood: 18
   - combineFood: 2
-    finalFood: 25
+    finalFood: 23
+    finalFoodSprite: {fileID: 21300000, guid: 785c8f8c580f593418a7c19098f54da8, type: 3}
