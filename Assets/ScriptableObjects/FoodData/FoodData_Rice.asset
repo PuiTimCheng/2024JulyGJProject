@@ -60,7 +60,16 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  foodName: 11
   foodScore: 0
   stage1: {fileID: 21300000, guid: 6c459ff438b19af46b8e2cadbc98427f, type: 3}
-  stage2: {fileID: 21300000, guid: e0c996e3bf17b324fa922b5c08a74661, type: 3}
   plateSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  Phase0Time: 0
+  Phase1Time: 0
+  foodFormulas:
+  - combineFood: 0
+    finalFood: 18
+  - combineFood: 6
+    finalFood: 19
+  - combineFood: 14
+    finalFood: 21
