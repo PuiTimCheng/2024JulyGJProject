@@ -75,7 +75,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             GameCanvasUIManager.Instance.ShowGamePlayUI();
             Instance.PlayData = new PlayData(); //reset all game data
-            _playtimer.Reset(999);
+            _playtimer.Reset(120);
             _playtimer.Start();
             
             Instance.foodConveyor.Initiate(new System.Random().Next());
@@ -83,7 +83,8 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnUpdateState()
         {
-            Debug.Log($"PlayTime : {_playtimer.CurrentTime}");
+            GameCanvasUIManager.Instance.playTimerUI.UpdateTime(_playtimer.CurrentTime);
+            //Debug.Log($"PlayTime : {_playtimer.CurrentTime}");
         }
 
         public void OnExitState()
