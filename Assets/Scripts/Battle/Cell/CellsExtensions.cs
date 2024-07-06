@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle.Cell
+namespace Battle
 {
     public static class CellsExtensions
     {

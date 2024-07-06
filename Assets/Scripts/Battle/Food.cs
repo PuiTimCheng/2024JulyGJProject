@@ -8,18 +8,10 @@ namespace Battle
 {
     public class Food : SerializedMonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
-        private bool[,] _gridConfig = new bool[4, 4];
         private Image _img;
         private List<Vector2Int> _parentCells;
-        public CellsInfo<bool> Orientation;
-        public FoodDataInfo foodDataInfo;
-        
-        
-        [Button]
-        public void TestCreateFood()
-        {
-            InitFood(foodDataInfo.GetFoodDataByType(EmFoodType.Test1));
-        }
+        public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
+        FoodData _data;
 
         private void Awake()
         {
@@ -28,18 +20,8 @@ namespace Battle
 
         public void InitFood(FoodData data)
         {
-            // _gridConfig = data.GridConfig;
+            _data = data;
             _img.sprite = data.stage1;
-            
-            ConvertGridConfigToCellsInfo();
-        }
-        
-        private void ConvertGridConfigToCellsInfo()
-        {
-            var width = _gridConfig.GetLength(0);
-            var height = _gridConfig.GetLength(1);
-
-            Orientation = new CellsInfo<bool>(width, height, cor => _gridConfig[cor.x, cor.y]);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -73,6 +55,12 @@ namespace Battle
         public void SetParentCells(List<Vector2Int> cells)
         {
             _parentCells = cells;
+        }
+
+        // This called when release the mouse on a invalid cell or outside the stomach
+        public void OnDiscard()
+        {
+            Destroy(gameObject);
         }
     }
 }

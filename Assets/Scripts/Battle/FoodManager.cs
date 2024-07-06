@@ -1,16 +1,8 @@
 using System.Linq;
-using Battle.Cell;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Battle
 {
-    public enum DragMode
-    {
-        Free,
-        Snap
-    }
-
     public class FoodManager : MonoBehaviour
     {
         public static FoodManager Instance;
@@ -89,18 +81,21 @@ namespace Battle
                         _curDraggingFood.transform.position = pos;
                         _curDraggingFood.SetParentCells(eligibleCells);
                         _curDraggingFood = null;
+
+                        StomachManager.Instance.SetCellState(eligibleCells
+                            .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList());
                     }
                     else
                     {
                         // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
-                        Destroy(_curDraggingFood);
+                        _curDraggingFood.OnDiscard();
                         _curDraggingFood = null;
                     }
                 }
                 else
                 {
                     // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
-                    Destroy(_curDraggingFood);
+                    _curDraggingFood.OnDiscard();
                     _curDraggingFood = null;
                 }
             }

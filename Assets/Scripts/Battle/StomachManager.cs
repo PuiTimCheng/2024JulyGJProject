@@ -7,52 +7,46 @@ namespace Battle
 {
     public class StomachManager : SerializedMonoBehaviour
     {
-        [SerializeField] [ShowInInspector]
-        private bool[,] _gridConfig = new bool[7, 7]; 
-
         public static StomachManager Instance { get; private set; }
-
         private GridLayoutGroup _gridLayoutGroup;
-    
-        public CellsInfo<global::Cell> Cells { get; private set; }
-
-        public global::Cell CurrentSelecting { get; private set; }
+        public CellsInfo<Cell> Cells { get; private set; }
+        public Cell CurrentSelecting { get; private set; }
         public GameObject cellPrefab;
 
-
+        // TEMP:
+        public CellsInfo<bool> FakeStart;
+        
+        
         private void Awake()
         {
             Instance = this;
 
             _gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        
+
             _gridLayoutGroup.cellSize = new Vector2(87, 87);
-            _gridLayoutGroup.spacing = new Vector2(5, 5); 
-            _gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            _gridLayoutGroup.constraintCount = _gridConfig.GetLength(1);
+            _gridLayoutGroup.spacing = new Vector2(5, 5);
             
-            GenerateCells();
+            GenerateCells(FakeStart);
         }
 
-        [Button]
-        public void GenerateCells()
+        public void GenerateCells(CellsInfo<bool> source)
         {
-            foreach (Transform child in _gridLayoutGroup.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            _gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            _gridLayoutGroup.constraintCount = source.Width;
 
-            Cells = new CellsInfo<global::Cell>(_gridConfig.GetLength(0), _gridConfig.GetLength(1), (cor) =>
+            Cells = new CellsInfo<Cell>(source.Width, source.Height, (cor) =>
             {
-                var cell = Instantiate(cellPrefab, _gridLayoutGroup.transform).GetComponent<global::Cell>();
-                cell.Init(cor, _gridConfig[cor.x, cor.y] ? CellState.Empty : CellState.Inactive, HighLightType.None);
+                var cell = Instantiate(cellPrefab, _gridLayoutGroup.transform).GetComponent<Cell>();
+                cell.Init(cor, source.GetItem(cor) ? CellState.Empty : CellState.Inactive, HighLightType.None);
                 return cell;
             });
         }
-        public void SelectCell(global::Cell cell)
+
+        public void SelectCell(Cell cell)
         {
             CurrentSelecting = cell;
         }
+
         public void DeselectCell()
         {
             CurrentSelecting = null;
@@ -65,7 +59,7 @@ namespace Battle
                 cell.SetHighLightType(HighLightType.None);
             }
         }
-    
+
         public void SetHighLight(List<(Vector2Int, HighLightType)> highLightList)
         {
             foreach (var (cor, highLightType) in highLightList)
