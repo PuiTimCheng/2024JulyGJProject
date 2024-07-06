@@ -30,7 +30,7 @@ public class GameManager : PersistentSingleton<GameManager>
         }
         
         //load saved ranking data
-        rankingData = ES3.Load(RankingDataSaveKey, new Dictionary<string, int>());
+        LoadScore();
     }
 
     private async void CheckAndLoadFoodData(string path, string foodName)
@@ -50,14 +50,15 @@ public class GameManager : PersistentSingleton<GameManager>
         }
     }
 
-    public void SaveScore()
+    public void SaveScore(Dictionary<string, int> dict)
     {
-        
+        ES3.Save(GameManager.RankingDataSaveKey, dict);
     }
 
     public Dictionary<string, int> LoadScore()
     {
-        return null;
+        rankingData = ES3.Load(RankingDataSaveKey, new Dictionary<string, int>());
+        return rankingData;
     }
     
     public void LoadPlayScene()
@@ -74,7 +75,7 @@ public class GameManager : PersistentSingleton<GameManager>
     
     public void ShowRanking()
     {
-        
+        RankingUI.Instance.Show();
     }
 
     public void ShowCredits()

@@ -61,9 +61,9 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
     public void SaveScore(string playerName)
     {
-        var dict = GameManager.Instance.rankingData;
+        var dict = GameManager.Instance.LoadScore();
         dict.Add(playerName, PlayData.Score);
-        ES3.Save(GameManager.RankingDataSaveKey, dict);
+        GameManager.Instance.SaveScore(dict);
         Debug.Log($"Score Saved {playerName}:{PlayData.Score}");
     }
     
@@ -103,7 +103,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             GameCanvasUIManager.Instance.ShowGamePlayUI();
             Instance.PlayData = new PlayData(); //reset all game data
-            _playtimer.Reset(120);
+            _playtimer.Reset(90);
             _playtimer.Start();
             
             Instance.foodConveyor.Initiate(new System.Random().Next());
@@ -131,6 +131,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         public void OnEnterState()
         {
             GameCanvasUIManager.Instance.conclusionUI.Show();
+            GameCanvasUIManager.Instance.conclusionUI.scoreText.text = Instance.PlayData.Score.ToString();
         }
 
         public void OnUpdateState()

@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 116a13e685a14544fba8ae3d984dba77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462850d4c981a814a87c8e29826a236e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -297,3 +297,4 @@ MonoBehaviour:
   _raycastImage: {fileID: 3801550203617942867}
   _stateImage: {fileID: 1399389671856789350}
   _highLightImage: {fileID: 3755012863980924360}
+  food: {fileID: 0}
