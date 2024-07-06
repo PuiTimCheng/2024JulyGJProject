@@ -22,7 +22,7 @@ public class CellsInfo<T>
         Cells = new T[Width, Height];
     }
 
-    public Vector2 Pivot => new Vector2(this.Width / 2, this.Width * (this.Height / 2));
+    public Vector2 Pivot => new Vector2(Width / 2, this.Width * (Height / 2));
 
     public CellsInfo(int width, int height, Func<Vector2Int, T> source)
     {

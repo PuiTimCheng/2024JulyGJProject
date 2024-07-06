@@ -1,69 +1,79 @@
-using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class StomachManager : SerializedMonoBehaviour
+namespace Battle
 {
-    public static StomachManager Instance { get; private set; }
-
-    public GridLayoutGroup GridLayoutGroup;
-    
-    public CellsInfo<Cell> Cells { get; private set; }
-
-    public Cell CurrentSelecting { get; private set; }
-
-    void Awake()
+    public class StomachManager : SerializedMonoBehaviour
     {
-        Instance = this;
-    }
+        public static StomachManager Instance { get; private set; }
+        private GridLayoutGroup _gridLayoutGroup;
+        public CellsInfo<Cell> Cells { get; private set; }
+        public Cell CurrentSelecting { get; private set; }
+        public GameObject cellPrefab;
 
-    public GameObject _cellPrefab;
-
-    public void GenerateCells(CellsInfo<bool> source)
-    {
-        GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        GridLayoutGroup.constraintCount = source.Width;
+        // TEMP:
+        public CellsInfo<bool> FakeStart;
         
-        Cells = new CellsInfo<Cell>(source.Width, source.Height, (cor) =>
+        
+        private void Awake()
         {
-            var cell = Instantiate(_cellPrefab, GridLayoutGroup.transform).GetComponent<Cell>();
-            cell.Init(cor, source.GetItem(cor) ? CellState.Empty : CellState.Inactive, HighLightType.None);
-            return cell;
-        });
-    }
-    public void SelectCell(Cell cell)
-    {
-        CurrentSelecting = cell;
-    }
-    public void DeselectCell()
-    {
-        CurrentSelecting = null;
-    }
+            Instance = this;
 
-    public void ClearHighLight()
-    {
-        foreach (var cell in Cells.Cells)
-        {
-            cell.SetHighLightType(HighLightType.None);
-        }
-    }
-    
-    public void SetHighLight(List<(Vector2Int, HighLightType)> highLightList)
-    {
-        foreach (var (cor, highLightType) in highLightList)
-        {
-            Cells.GetItem(cor).SetHighLightType(highLightType);
-        }
-    }
+            _gridLayoutGroup = GetComponent<GridLayoutGroup>();
 
-    public void SetCellState(List<(Vector2Int, CellState)> cellStateList)
-    {
-        foreach (var (cor, state) in cellStateList)
+            _gridLayoutGroup.cellSize = new Vector2(87, 87);
+            _gridLayoutGroup.spacing = new Vector2(5, 5);
+            
+            GenerateCells(FakeStart);
+        }
+
+        public void GenerateCells(CellsInfo<bool> source)
         {
-            Cells.GetItem(cor).SetCellState(state);
+            _gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            _gridLayoutGroup.constraintCount = source.Width;
+
+            Cells = new CellsInfo<Cell>(source.Width, source.Height, (cor) =>
+            {
+                var cell = Instantiate(cellPrefab, _gridLayoutGroup.transform).GetComponent<Cell>();
+                cell.Init(cor, source.GetItem(cor) ? CellState.Empty : CellState.Inactive, HighLightType.None);
+                return cell;
+            });
+        }
+
+        public void SelectCell(Cell cell)
+        {
+            CurrentSelecting = cell;
+        }
+
+        public void DeselectCell()
+        {
+            CurrentSelecting = null;
+        }
+
+        public void ClearHighLight()
+        {
+            foreach (var cell in Cells.Cells)
+            {
+                cell.SetHighLightType(HighLightType.None);
+            }
+        }
+
+        public void SetHighLight(List<(Vector2Int, HighLightType)> highLightList)
+        {
+            foreach (var (cor, highLightType) in highLightList)
+            {
+                Cells.GetItem(cor).SetHighLightType(highLightType);
+            }
+        }
+
+        public void SetCellState(List<(Vector2Int, CellState)> cellStateList)
+        {
+            foreach (var (cor, state) in cellStateList)
+            {
+                Cells.GetItem(cor).SetCellState(state);
+            }
         }
     }
 }

@@ -1,36 +1,35 @@
-using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class FoodManager : MonoBehaviour
+namespace Battle
 {
-    public static FoodManager Instance;
-
-    public Food _curDraggingFood { get; private set; }
-
-    void Awake()
+    public class FoodManager : MonoBehaviour
     {
-        Instance = this;
-    }
+        public static FoodManager Instance;
 
-    public void StartDrag(Food draggable)
-    {
-        Debug.Log("StartDrag");
-        if (_curDraggingFood)
+        public Food _curDraggingFood { get; private set; }
+
+        void Awake()
         {
-            Debug.LogError("Current is dragging. ");
-            return;
+            Instance = this;
         }
 
-        _curDraggingFood = draggable;
-        _curDraggingFood.SetRaycastable(false);
-    }
-
-    void Update()
-    {
-        if (_curDraggingFood)
+        public void StartDrag(Food draggable)
         {
+            Debug.Log("StartDrag");
+            if (_curDraggingFood)
+            {
+                Debug.LogError("Current is dragging. ");
+                return;
+            }
+
+            _curDraggingFood = draggable;
+            _curDraggingFood.SetRaycastAble(false);
+        }
+
+        private void Update()
+        {
+            if (!_curDraggingFood) return;
             StomachManager.Instance.ClearHighLight();
 
             // TODO: switch to new inputsystem if necessary
@@ -82,18 +81,21 @@ public class FoodManager : MonoBehaviour
                         _curDraggingFood.transform.position = pos;
                         _curDraggingFood.SetParentCells(eligibleCells);
                         _curDraggingFood = null;
+
+                        StomachManager.Instance.SetCellState(eligibleCells
+                            .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList());
                     }
                     else
                     {
                         // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
-                        Destroy(_curDraggingFood);
+                        _curDraggingFood.OnDiscard();
                         _curDraggingFood = null;
                     }
                 }
                 else
                 {
                     // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
-                    Destroy(_curDraggingFood);
+                    _curDraggingFood.OnDiscard();
                     _curDraggingFood = null;
                 }
             }
