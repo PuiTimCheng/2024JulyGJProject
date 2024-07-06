@@ -7,11 +7,14 @@ using UnityEngine;
 /// This script is used for food to store its information
 /// </summary>
 /// <typeparam name="T"></typeparam>
+
+[Serializable]
 public class CellsInfo<T>
 {
     public int Width;
     public int Height;
 
+    [ShowInInspector]
     [TableMatrix(HorizontalTitle = "Cells", SquareCells = true)]
     public T[,] Cells;
 
