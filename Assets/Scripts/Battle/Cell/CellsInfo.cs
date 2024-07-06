@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battle;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 /// <summary>
 /// This script is used for food to store its information
@@ -56,5 +58,43 @@ public class CellsInfo<T>
     {
         return cor.x >= 0 && cor.x < Width && cor.y >= 0 && cor.y < Height;
     }
+
+    public void DestroyCellByType(FoodName foodName)
+    {
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                Cell cell = Cells[x, y] as Cell; 
+                if (cell != null && cell.food != null && cell.food._data.foodName == foodName)
+                {
+                    cell.SetCellState(CellState.Empty); 
+                    if (cell.food != null)
+                    {
+                        Object.Destroy(cell.food.gameObject);
+                    }
+                }
+            }
+        }
+    }
+    
+    public void CheckCombine()
+    {
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                Cell cell = Cells[x, y] as Cell; 
+                if (cell != null && cell.food != null && cell.CellState == CellState.Occupied)
+                {
+                    if (cell.CanCombineWithNeighbors())
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
 
 }

@@ -101,7 +101,9 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
             {
                 if (formula.combineFood == neighborCell.food._data.foodName)
                 {
-                    //todo: 
+                    StomachManager.Instance.Cells.DestroyCellByType(formula.combineFood);
+                    food._img.sprite = formula.finalFoodSprite;
+                    food._data.foodName = formula.finalFood;
                     return true;
                 }
             }

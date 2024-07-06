@@ -1913,7 +1913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &663624719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3221,7 +3221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1123662359}
-  nameInputField: {fileID: 499537582}
+  nameInputField: {fileID: 0}
   restartBtn: {fileID: 221089007}
   rankingBtn: {fileID: 52037577}
   menuBtn: {fileID: 848223106}

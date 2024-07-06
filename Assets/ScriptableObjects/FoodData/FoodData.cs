@@ -22,20 +22,18 @@ namespace Battle
         Stone,
         Tomato,
         WatermelonSlice,
-        //Shrimp,
-        //HotDog,
-        //Sausage,
-        //[LabelText("咖喱饭")] RiceAndBeef, //咖喱饭
-        //[LabelText("蛋炒饭")] RiceAndEgg, //蛋炒饭
-        //[LabelText("虾饺")] ShrimpAndBiscuit, //虾饺
-        //[LabelText("西瓜拌饭")] WatermelonAndRice, //西瓜拌饭
-        //[LabelText("蛋饺")] EggAndBiscuit, //蛋饺
-        //[LabelText("热狗")] SausageAndBread,
-        //[LabelText("海鲜面")] ShrimpAndNoodle,
-        //[LabelText("牛角面包")] BeefAndBread,
-        //[LabelText("番茄鱼")] TomatoAndFish,
-        //[LabelText("三明治")] BreadAndChicken,
-        //[LabelText("饺子")] ChickenAndBiscuit,
+        Sausage,
+        [LabelText("咖喱饭")] RiceAndBeef, //咖喱饭
+        [LabelText("蛋炒饭")] RiceAndEgg, //蛋炒饭
+        [LabelText("虾饺")] ShrimpAndBiscuit, //虾饺
+        [LabelText("西瓜拌饭")] WatermelonAndRice, //西瓜拌饭
+        [LabelText("蛋饺")] EggAndBiscuit, //蛋饺
+        [LabelText("热狗")] SausageAndBread,
+        [LabelText("海鲜面")] ShrimpAndNoodle,
+        [LabelText("牛角面包")] BeefAndBread,
+        [LabelText("番茄鱼")] TomatoAndFish,
+        [LabelText("三明治")] BreadAndChicken,
+        [LabelText("饺子")] ChickenAndBiscuit,
     }
 
     [Serializable]
@@ -43,6 +41,7 @@ namespace Battle
     {
         [LabelText("可以合成的食物")] public FoodName combineFood;
         [LabelText("最终生成的食物")] public FoodName finalFood;
+        [PreviewField] public Sprite finalFoodSprite;
     }
 
     [Serializable]

@@ -10,7 +10,7 @@ namespace Battle
 {
     public class Food : SerializedMonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
-        [SerializeField] private Image _img;
+        [SerializeField] public Image _img;
         private List<Vector2Int> _parentCells;
         public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
         private Plate _fromPlate;

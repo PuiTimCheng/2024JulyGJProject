@@ -74,6 +74,8 @@ namespace Battle
                 Cells.GetItem(cor).SetCellState(state);
                 Cells.GetItem(cor).SetFood(food);
             }
+
+            Cells.CheckCombine();
         }
     }
 }
