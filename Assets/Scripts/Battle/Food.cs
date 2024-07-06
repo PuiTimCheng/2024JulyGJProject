@@ -63,6 +63,23 @@ namespace Battle
             Destroy(gameObject);
         }
     }
+
+    public class Builder
+    {
+        private FoodConfig _foodConfig;
+
+        public Builder(FoodConfig _config)
+        {
+            _foodConfig = _config;
+        }
+
+        public Food Build()
+        {
+            var food = GameObject.Instantiate(GameManager.Instance.foodPrefab).GetComponent<Food>();
+            //food.InitFood();
+            return null;
+        }
+    }
 }
 
 

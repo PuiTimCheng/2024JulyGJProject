@@ -5,12 +5,14 @@ using MoreMountains.Feedbacks;
 using TimToolBox.Extensions;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 
 public class GameManager : PersistentSingleton<GameManager>
 {
     [SerializeField] MMF_Player loadPlayScenePlayer;
     [SerializeField] MMF_Player loadMenuScenePlayer;
 
+    public GameObject foodPrefab;
     public Dictionary<FoodName, FoodConfig> FoodNameToConfigs;
     
     protected override void InitializeSingleton()
@@ -18,7 +20,10 @@ public class GameManager : PersistentSingleton<GameManager>
         base.InitializeSingleton();
         //Load Food Configs
         FoodNameToConfigs = new Dictionary<FoodName, FoodConfig>();
+        
         //load using addressable
+        foodPrefab =  Addressables.LoadAssetAsync<GameObject>("Assets/Prefab/Food.prefab").WaitForCompletion();
+        
         var foodNames = Enum.GetNames(typeof(FoodName));
         foreach (var foodName in foodNames)
         {

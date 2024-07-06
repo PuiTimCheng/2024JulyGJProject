@@ -6,7 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FoodConfig", menuName = "ScriptableObjects/FoodConfig", order = 1)]
 public class FoodConfig : ScriptableObject
 {
-    public Sprite[] DegradeSprites;
+    [PreviewField] public Sprite FreshSprite;
+    [PreviewField] public Sprite DegradeSprite;
     
     [ShowInInspector]
     [TableMatrix(HorizontalTitle = "Cells", SquareCells = true)]
