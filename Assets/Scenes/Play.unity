@@ -1362,6 +1362,8 @@ GameObject:
   - component: {fileID: 867567024}
   - component: {fileID: 867567026}
   - component: {fileID: 867567027}
+  - component: {fileID: 867567029}
+  - component: {fileID: 867567028}
   m_Layer: 5
   m_Name: UiEffect
   m_TagString: Untagged
@@ -1410,6 +1412,115 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BurstObject: {fileID: 8332960207733953592, guid: f5f19bad849a4ae41822221cbfb9fbd5, type: 3}
   text: {fileID: 1742520828}
+--- !u!114 &867567028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867567023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks: []
+  InitializationMode: 2
+  SafeMode: 3
+  Direction: 0
+  AutoChangeDirectionOnEnd: 0
+  AutoPlayOnStart: 0
+  AutoPlayOnEnable: 0
+  ForceTimescaleMode: 0
+  ForcedTimescaleMode: 1
+  DurationMultiplier: 1
+  RandomizeDuration: 0
+  RandomDurationMultiplier: {x: 0.5, y: 1.5}
+  DisplayFullDurationDetails: 0
+  PlayerTimescaleMode: 1
+  OnlyPlayIfWithinRange: 0
+  RangeCenter: {fileID: 0}
+  RangeDistance: 5
+  UseRangeFalloff: 0
+  RangeFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RemapRangeFalloff: {x: 0, y: 1}
+  IgnoreRangeEvents: 0
+  CooldownDuration: 0
+  InitialDelay: 0
+  CanPlay: 1
+  CanPlayWhileAlreadyPlaying: 1
+  ChanceToPlay: 100
+  FeedbacksIntensity: 1
+  Events:
+    TriggerMMFeedbacksEvents: 0
+    TriggerUnityEvents: 1
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPause:
+      m_PersistentCalls:
+        m_Calls: []
+    OnResume:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRevert:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  DebugActive: 0
+  FeedbacksList: []
+  KeepPlayModeChanges: 0
+  PerformanceMode: 0
+  ForceStopFeedbacksOnDisable: 1
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &867567029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867567023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae6607a270a44aeb6b2011ee52d430d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEffect: {fileID: 867567028}
+  singleIcon: {fileID: 4791905431041041950, guid: 6bbe748d21ade874997062fde8dc6d9a, type: 3}
+  endPosition: {fileID: 6331501215663841222}
+  controlPointOffsetMin: {x: -300, y: 0, z: 0}
+  controlPointOffsetMax: {x: 300, y: 300, z: 0}
+  canvas: {fileID: 1976099881}
+  minSpeed: 0.5
+  maxSpeed: 1
+  cam: {fileID: 1461900566}
 --- !u!1001 &1056007969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3676,6 +3787,7 @@ MonoBehaviour:
   playTimerUI: {fileID: 111471992}
   playScoreUI: {fileID: 329101392}
   uIEffectManager: {fileID: 867567027}
+  iconAnimation: {fileID: 867567029}
 --- !u!1 &2042480521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3954,15 +4066,32 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5237775127851131852, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237775127851131852, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5371840283961284926, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5371840283961284926, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
+    - target: {fileID: 6932045402195505527, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
+--- !u!224 &6331501215663841222 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 878374500556278318, guid: d810a4ed627558544b19994ed230bd7a, type: 3}
+  m_PrefabInstance: {fileID: 6331501215663841221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6975582420233210978
 PrefabInstance:
   m_ObjectHideFlags: 0

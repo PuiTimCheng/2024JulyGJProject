@@ -11,6 +11,7 @@ namespace UI.GameCanvasUIManager
         public PlayTimerUI playTimerUI;
         public PlayScoreUI playScoreUI;
         public UIEffectManager uIEffectManager;
+        public IconAnimation iconAnimation;
 
         public void ShowInstruction()
         {
