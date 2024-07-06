@@ -21,4 +21,9 @@ public class Plate : MonoBehaviour
         plate.Init(foodData);
         return plate;
     }
+
+    public void ClearCellPresenter()
+    {
+        _cellPresenter.gameObject.SetActive(false);
+    }
 }

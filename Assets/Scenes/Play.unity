@@ -2582,10 +2582,10 @@ MonoBehaviour:
   despawnRectTransform: {fileID: 53078732}
   conveyorRawImage: {fileID: 1956504223}
   randomSeed: 0
-  conveyorSpeed: 1
+  conveyorSpeed: 0.35
   uvRectSpeedMultiplier: 1
   foodSpeedMultiplier: 480
-  spawnFoodPerSecond: 5
+  spawnFoodInterval: 0.5
 --- !u!1001 &1392464719
 PrefabInstance:
   m_ObjectHideFlags: 0

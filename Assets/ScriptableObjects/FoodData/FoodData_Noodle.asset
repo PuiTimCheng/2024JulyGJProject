@@ -29,16 +29,19 @@ MonoBehaviour:
       Data: 1
     - Name: Height
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: Cells
       Entry: 7
       Data: 1|System.Boolean[,], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: ranks
       Entry: 1
-      Data: 1|3
+      Data: 1|4
+    - Name: 
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 5
       Data: true
@@ -57,6 +60,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  foodScore: 0
   stage1: {fileID: 21300000, guid: e0c996e3bf17b324fa922b5c08a74661, type: 3}
   stage2: {fileID: 21300000, guid: e0c996e3bf17b324fa922b5c08a74661, type: 3}
   plateSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  Phase0Time: 0
+  Phase1Time: 0

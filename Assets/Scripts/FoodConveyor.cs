@@ -23,7 +23,7 @@ public class FoodConveyor : MonoBehaviour
     public float conveyorSpeed;
     public float uvRectSpeedMultiplier;
     public float foodSpeedMultiplier;
-    public float spawnFoodPerSecond;
+    [FormerlySerializedAs("spawnFoodPerSecond")] public float spawnFoodInterval;
 
     private bool _conveyorStarted;
     private Random _random;
@@ -33,7 +33,7 @@ public class FoodConveyor : MonoBehaviour
         _conveyorStarted = true;
         this.randomSeed = randomSeed;
         _random = new Random(this.randomSeed);
-        _spawnTimer = new CountdownTimer(1f/ spawnFoodPerSecond);
+        _spawnTimer = new CountdownTimer(spawnFoodInterval/ conveyorSpeed);
     }
 
     public void Update()
@@ -58,7 +58,7 @@ public class FoodConveyor : MonoBehaviour
             plate.transform.position = spawnRectTransform.position.Offset(y:yOffset);
             plate.transform.SetParent(spawnedFoodParent);
             
-            _spawnTimer.Reset(1f/ spawnFoodPerSecond);    
+            _spawnTimer.Reset(spawnFoodInterval/ conveyorSpeed);    
             _spawnTimer.Start();    
         }
         

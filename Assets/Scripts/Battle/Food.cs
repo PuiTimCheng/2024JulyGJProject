@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using DG.Tweening;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,17 +13,61 @@ namespace Battle
         [SerializeField] private Image _img;
         private List<Vector2Int> _parentCells;
         public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
+        private Plate _fromPlate;
+        
         FoodData _data;
+        float _curTime;
+        int _curPhase;
+        bool _digesting;
+        
+        void Update()
+        {
+            if (_digesting)
+            {
+                _curTime += Time.deltaTime;
+
+                switch (_curPhase)
+                {
+                    case 0:
+                        //if (_curTime >= _data.Phase0Time)
+                        if (_curTime >= 3)
+                        {
+                            _curPhase++;
+                            // TODO: Add Cell VFX?
+                        }
+                        break;
+                    case 1:
+                        //if (_curTime >= _data.Phase1Time)
+                        if (_curTime >= 6)
+                        {
+                            OnDigest();
+                        }
+                        break;
+                }
+            }
+        }
 
         public void InitFood(FoodData data)
         {
             _data = data;
             _img.sprite = data.stage1;
+            _img.SetNativeSize();
+            _fromPlate = transform.parent.GetComponent<Plate>();
         }
 
+        public void StartDigest()
+        {
+            Debug.Log($"Start Disgest ");
+            _img.raycastTarget = false;
+            _curTime = 0;
+            _curPhase = 0;
+            _digesting = true;
+        }
+        
         public void OnBeginDrag(PointerEventData eventData)
         {
             FoodManager.Instance.StartDrag(this);
+            _fromPlate?.ClearCellPresenter();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -52,21 +97,19 @@ namespace Battle
             _parentCells = cells;
         }
 
+        public void OnDigest()
+        {
+            _digesting = false;
+            //PlaySceneController.Instance.AddScore(_data.foodScore);
+            PlaySceneController.Instance.AddScore(100);
+            StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
+            OnDiscard(); // TEMP
+        }
+
         // This called when release the mouse on a invalid cell or outside the stomach
         public void OnDiscard()
         {
             Destroy(gameObject);
-        }
-        
-        public void ScaleUp()
-        {
-            transform.DOScale(1.1f, 0.5f).SetEase(Ease.OutQuad);
-        }
-
-        // 恢复到原始大小1.0的方法
-        public void ScaleDown()
-        {
-            transform.DOScale(1.0f, 0.5f).SetEase(Ease.InQuad);
         }
     }
 }
@@ -74,21 +117,20 @@ namespace Battle
 
 public enum FoodName
 {
+    Beef,
+    Biscuit,
+    Bread,
+    Broccoli,
+    Cake,
+    Chicken,
+    Egg,
+    Fish,
+    Mushroom,
     Noodle,
-    //Sausage,
-    //Tempura,
-    //Watermelon,
-    //Beef,
-    //PizzaSlice,
-    //Shrimp,
-    //Egg,
-    //Rice,
-    //Potato,
-    //Fish,
-    //Broccoli,
-    //Seaweed,
-    //Bread,
-    //Mushroom,
-    //Tomato,
-    //Chicken,
+    Prawn,
+    Rice,
+    Sausage,
+    Stone,
+    Tomato,
+    WatermelonSlice,
 }

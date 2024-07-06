@@ -17,7 +17,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
     [ShowInInspector]public Vector2Int Index { get; private set; }
     public CellState CellState { get; private set; }
     public HighLightType HighLightType { get; private set; }
-
+    
     public void Init(Vector2Int index, CellState state, HighLightType highLightType)
     {
         Index = index;
