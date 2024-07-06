@@ -13,7 +13,8 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public GameObject platePrefab;
     public Dictionary<FoodName, FoodData> FoodNameToConfigs;
-    
+    public Dictionary<string, int> rankingData = new Dictionary<string, int>();
+    public static string RankingDataSaveKey = "RankingDataSaveKey";
     protected override void InitializeSingleton()
     {
         base.InitializeSingleton();
@@ -30,6 +31,9 @@ public class GameManager : PersistentSingleton<GameManager>
             FoodData data = Addressables.LoadAssetAsync<FoodData>(path).WaitForCompletion();
             if(data) FoodNameToConfigs.Add(Enum.Parse<FoodName>(foodName), data);
         }
+        
+        //load saved ranking data
+        rankingData = ES3.Load(RankingDataSaveKey, new Dictionary<string, int>());
     }
 
     public void LoadPlayScene()
