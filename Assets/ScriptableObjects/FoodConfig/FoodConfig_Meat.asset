@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DegradeLevels: 0
   DegradeSprites: []
+  OccupyCells:
+    Width: 3
+    Height: 3

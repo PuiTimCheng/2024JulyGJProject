@@ -8,13 +8,11 @@ using UnityEngine;
 /// </summary>
 /// <typeparam name="T"></typeparam>
 
-[Serializable]
 public class CellsInfo<T>
 {
     public int Width;
     public int Height;
 
-    [ShowInInspector]
     [TableMatrix(HorizontalTitle = "Cells", SquareCells = true)]
     public T[,] Cells;
 

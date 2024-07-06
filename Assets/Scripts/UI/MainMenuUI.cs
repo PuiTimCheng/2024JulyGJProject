@@ -24,7 +24,6 @@ namespace UI
         {
             //show credits ui here
             Debug.Log("credits");
-        
         }
     }
 }

@@ -1,4 +1,3 @@
-using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,20 +13,21 @@ namespace UI.GameCanvasUIManager
 
         public void Start()
         {
-            // restartBtn.onClick.AddListener(GameManager.Instance.StartNewGame);
-            // rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
-            // menuBtn.onClick.AddListener(GameManager.Instance.BackToMenu);
+            restartBtn.onClick.AddListener(GameManager.Instance.LoadPlayScene);
+            rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
+            menuBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
         }
 
         public void Show()
         {
             gameObject.SetActive(true);
-            // scoreText.text = GameSceneController.Singleton.GameData.Score.ToString();
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
         }
+        
+        
     }
 }

@@ -1,37 +1,23 @@
 using System;
 using ImprovedTimers;
+using MoreMountains.Feedbacks;
 using TimToolBox.DesignPattern.StateMachine;
+using TimToolBox.Extensions;
+using UI.GameCanvasUIManager;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Util;
 using IState = TimToolBox.DesignPattern.StateMachine.IState;
 using StateMachine = TimToolBox.DesignPattern.StateMachine.StateMachine;
 
 /// <summary>
 /// Contains all necessary information of one game
 /// </summary>
-public class GameSceneController : MonoBehaviour
+public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneController>
 {
-    public static GameSceneController _singleton;
-
-    public static GameSceneController Singleton
-    {
-        get
-        {
-            if (_singleton == null)
-                _singleton = new GameObject("GameSceneController").AddComponent<GameSceneController>();
-            return _singleton;
-        }
-    }
-
     public StateMachine GameStateMachine;
     public GameData GameData;
-
-    public ConclusionUI ConclusionUI;
     
-    private void Awake()
-    {
-        _singleton = this;
-    }
-
     private void Start()
     {
         GameStateMachine = new StateMachine();
@@ -59,10 +45,9 @@ public class GameSceneController : MonoBehaviour
         }
         public void OnEnterState()
         {
-            Singleton.ConclusionUI.Hide();
-            
-            Singleton.GameData = new GameData(); //reset all game data
-            _playtimer.Reset(5);
+            GameCanvasUIManager.Instance.conclusionUIPanel.Hide();
+            Instance.GameData = new GameData(); //reset all game data
+            _playtimer.Reset(2);
             _playtimer.Start();
         }
 
@@ -85,7 +70,7 @@ public class GameSceneController : MonoBehaviour
     {
         public void OnEnterState()
         {
-            Singleton.ConclusionUI.Show();
+            GameCanvasUIManager.Instance.conclusionUIPanel.Show();
         }
 
         public void OnUpdateState()
