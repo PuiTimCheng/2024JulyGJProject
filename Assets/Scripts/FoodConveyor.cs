@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 using ImprovedTimers;
 using TimToolBox.Extensions;
 using UnityEngine.Serialization;
@@ -48,12 +49,15 @@ public class FoodConveyor : MonoBehaviour
         if (_spawnTimer.IsFinished)
         {
             //TODO move this to a factory
-            var food = new GameObject("Food");
-            var img = food.AddComponent<Image>();
-            img.color = Color.red;
+
+            var keys = GameManager.Instance.FoodNameToConfigs.Keys.ToList();
+            var index = _random.Next(0, keys.Count);
+            var plate = Plate.BuildPlate(GameManager.Instance.FoodNameToConfigs[keys[index]]);
+            
             var yOffset = Mathf.Lerp(0, spawnRectTransform.rect.height, (float)_random.NextDouble()) - spawnRectTransform.rect.height/2f;
-            food.transform.position = spawnRectTransform.position.Offset(y:yOffset);
-            food.transform.SetParent(spawnedFoodParent);
+            plate.transform.position = spawnRectTransform.position.Offset(y:yOffset);
+            plate.transform.SetParent(spawnedFoodParent);
+            
             _spawnTimer.Reset(1f/ spawnFoodPerSecond);    
             _spawnTimer.Start();    
         }

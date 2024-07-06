@@ -25,6 +25,7 @@ namespace Battle
 
             _curDraggingFood = draggable;
             _curDraggingFood.SetRaycastAble(false);
+            _curDraggingFood.transform.SetParent(transform);
         }
 
         private void Update()

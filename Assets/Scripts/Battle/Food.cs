@@ -8,15 +8,10 @@ namespace Battle
 {
     public class Food : SerializedMonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
-        private Image _img;
+        [SerializeField] private Image _img;
         private List<Vector2Int> _parentCells;
         public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
         FoodData _data;
-
-        private void Awake()
-        {
-            _img = GetComponent<Image>();
-        }
 
         public void InitFood(FoodData data)
         {
@@ -31,7 +26,6 @@ namespace Battle
 
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position = eventData.position;
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -63,43 +57,26 @@ namespace Battle
             Destroy(gameObject);
         }
     }
-
-    public class Builder
-    {
-        private FoodConfig _foodConfig;
-
-        public Builder(FoodConfig _config)
-        {
-            _foodConfig = _config;
-        }
-
-        public Food Build()
-        {
-            var food = GameObject.Instantiate(GameManager.Instance.foodPrefab).GetComponent<Food>();
-            //food.InitFood();
-            return null;
-        }
-    }
 }
 
 
 public enum FoodName
 {
     Noodle,
-    Sausage,
-    Tempura,
-    Watermelon,
-    Beef,
-    PizzaSlice,
-    Shrimp,
-    Egg,
-    Rice,
-    Potato,
-    Fish,
-    Broccoli,
-    Seaweed,
-    Bread,
-    Mushroom,
-    Tomato,
-    Chicken,
+    //Sausage,
+    //Tempura,
+    //Watermelon,
+    //Beef,
+    //PizzaSlice,
+    //Shrimp,
+    //Egg,
+    //Rice,
+    //Potato,
+    //Fish,
+    //Broccoli,
+    //Seaweed,
+    //Bread,
+    //Mushroom,
+    //Tomato,
+    //Chicken,
 }

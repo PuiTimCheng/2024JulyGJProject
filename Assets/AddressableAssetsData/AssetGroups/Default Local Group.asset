@@ -17,13 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: f56b339104e655340ac8209ca8d074ef
   m_SerializeEntries:
-  - m_GUID: 6dd010275a2d740409e03bf83fe57e53
-    m_Address: Assets/ScriptableObjects/FoodConfig/FoodConfig_Noodle.asset
+  - m_GUID: f7c805b5fc718b9458528f4e21b7d66e
+    m_Address: Assets/Prefab/Plate.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9a3b6363a87d7ef46ae6a4127ab3685b
-    m_Address: Assets/ScriptableObjects/FoodConfig/FoodConfig_Sausage.asset
+  - m_GUID: f3ac775b7027feb4f88bf41614badb2b
+    m_Address: Assets/Prefab/Food.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f79f783c13fffc34a95bedf66c202ce5
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Noodle.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

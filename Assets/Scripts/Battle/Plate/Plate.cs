@@ -10,10 +10,17 @@ public class Plate : MonoBehaviour
     [SerializeField] CellPresenter _cellPresenter;
     [SerializeField] Image _plate;
     
-    public void Init(FoodData food)
+    public void Init(FoodData data)
     {
-        _food.InitFood(food);
-        _cellPresenter.GenerateCell(food);
-        //TODO: Set plate sprite
+        _food.InitFood(data);
+        _cellPresenter.GenerateCell(data);
+        _plate.sprite = data.plateSprite;
+    }
+
+    public static Plate BuildPlate(FoodData foodData)
+    {
+        var plate = Instantiate(GameManager.Instance.platePrefab).GetComponent<Plate>();
+        plate.Init(foodData);
+        return plate;
     }
 }

@@ -24,7 +24,6 @@ namespace Battle
             _gridLayoutGroup = GetComponent<GridLayoutGroup>();
 
             _gridLayoutGroup.cellSize = new Vector2(87, 87);
-            _gridLayoutGroup.spacing = new Vector2(5, 5);
             
             GenerateCells(FakeStart);
         }
