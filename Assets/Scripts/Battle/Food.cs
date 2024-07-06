@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using UI.GameCanvasUIManager;
 
 namespace Battle
 {
@@ -18,7 +19,6 @@ namespace Battle
         float _curTime;
         int _curPhase;
         bool _digesting;
-        public ParticleSystem BurstEffect;
         
         void Update()
         {
@@ -100,6 +100,7 @@ namespace Battle
         public void OnDigest()
         {
             _digesting = false;
+            GameCanvasUIManager.Instance.iconAnimation.StartIconAnimation(10, transform.position);
             //PlaySceneController.Instance.AddScore(_data.foodScore);
             PlaySceneController.Instance.AddScore(100);
             StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
@@ -110,11 +111,6 @@ namespace Battle
         public void OnDiscard()
         {
             Destroy(gameObject);
-        }
-
-        public void Burst()
-        {
-            BurstEffect.Play();
         }
     }
 }
