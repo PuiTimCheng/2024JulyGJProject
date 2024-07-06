@@ -112,8 +112,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnUpdateState()
         {
-            GameCanvasUIManager.Instance.playTimerUI.UpdateTime(_playtimer.CurrentTime);
-            //Debug.Log($"PlayTime : {_playtimer.CurrentTime}");
+            GameCanvasUIManager.Instance.playTimerUI.UpdateTimeRatio(_playtimer.Progress);
         }
 
         public void OnExitState()

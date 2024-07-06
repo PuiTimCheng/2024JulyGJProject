@@ -13,6 +13,7 @@ namespace Battle
         public Cell CurrentSelecting { get; private set; }
         public GameObject cellPrefab;
 
+        public RectTransform rectTransform;
         // TEMP:
         public CellsInfo<bool> FakeStart;
         
@@ -20,7 +21,8 @@ namespace Battle
         private void Awake()
         {
             Instance = this;
-
+            
+            rectTransform = GetComponent<RectTransform>();
             _gridLayoutGroup = GetComponent<GridLayoutGroup>();
 
             _gridLayoutGroup.cellSize = new Vector2(87, 87);

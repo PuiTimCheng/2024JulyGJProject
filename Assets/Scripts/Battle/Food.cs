@@ -30,7 +30,7 @@ namespace Battle
                 {
                     case 0:
                         //if (_curTime >= _data.Phase0Time)
-                        if (_curTime >= 3)
+                        if (_curTime >= 8)
                         {
                             _curPhase++;
                             // TODO: Add Cell VFX?
@@ -38,7 +38,7 @@ namespace Battle
                         break;
                     case 1:
                         //if (_curTime >= _data.Phase1Time)
-                        if (_curTime >= 6)
+                        if (_curTime >= 10)
                         {
                             OnDigest();
                         }
