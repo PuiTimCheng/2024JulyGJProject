@@ -101,8 +101,7 @@ namespace Battle
         {
             _digesting = false;
             GameCanvasUIManager.Instance.iconAnimation.StartIconAnimation(10, transform.position);
-            //PlaySceneController.Instance.AddScore(_data.foodScore);
-            PlaySceneController.Instance.AddScore(100);
+            PlaySceneController.Instance.AddScore(GameManager.GetFoodScore(_data.foodName));
             PlaySceneController.Instance.AddEatenDish(_data.foodName);
             StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
             OnDiscard(); // TEMP

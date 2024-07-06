@@ -82,4 +82,36 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         
     }
+    
+    
+    public static int GetFoodScore(FoodName food)
+    {
+        switch (food)
+        {
+            case FoodName.RiceAndBeef:
+                return 500;
+            case FoodName.RiceAndEgg:
+                return 500;
+            case FoodName.ShrimpAndBiscuit:
+                return 500;
+            case FoodName.WatermelonAndRice:
+                return 500;
+            case FoodName.EggAndBiscuit:
+                return 500;
+            case FoodName.SausageAndBread:
+                return 500;
+            case FoodName.ShrimpAndNoodle:
+                return 500;
+            case FoodName.BeefAndBread:
+                return 500;
+            case FoodName.TomatoAndFish:
+                return 500;
+            case FoodName.BreadAndChicken:
+                return 500;
+            case FoodName.ChickenAndBiscuit:
+                return 500;
+            default:
+                return GameManager.Instance.FoodNameToConfigs[food].foodScore;
+        }
+    }
 }

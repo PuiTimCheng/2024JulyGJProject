@@ -30,7 +30,6 @@ public class UIEffectManager : MonoBehaviour
             .AppendInterval(1f) // 等待1秒
             .OnComplete(() => text.gameObject.SetActive(false));
     }
-
     public static string GetFoodLabel(FoodName food)
     {
         switch (food)

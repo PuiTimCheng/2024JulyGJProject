@@ -36,12 +36,13 @@ namespace UI.GameCanvasUIManager
             foreach (var foodName in allFoodNames)
             {
                 var resultEntry = Instantiate(resultEntryPrefab, resultEntriesRoot).GetComponent<ResultEntryUI>();
-                resultEntry.SetText(foodName.ToString(), data.EatenFood[foodName].ToString(), GameManager.Instance.FoodNameToConfigs[foodName].foodScore.ToString());
+                resultEntry.SetText(foodName.ToString(), data.EatenFood[foodName].ToString(),
+                    (GameManager.GetFoodScore(foodName) * data.EatenFood[foodName]).ToString());
             }
-            
+
             scoreText.text = data.Score.ToString();
         }
-        
+
         public void Show()
         {
             gameObject.SetActive(true);
