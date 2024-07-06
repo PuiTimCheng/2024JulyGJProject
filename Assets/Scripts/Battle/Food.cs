@@ -93,6 +93,7 @@ namespace Battle
         {
             _digesting = false;
             StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
+            OnDiscard(); // TEMP
         }
 
         // This called when release the mouse on a invalid cell or outside the stomach
