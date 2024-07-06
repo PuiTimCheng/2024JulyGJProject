@@ -113,24 +113,3 @@ namespace Battle
         }
     }
 }
-
-
-public enum FoodName
-{
-    Beef,
-    Biscuit,
-    Bread,
-    Broccoli,
-    Cake,
-    Chicken,
-    Egg,
-    Fish,
-    Mushroom,
-    Noodle,
-    Prawn,
-    Rice,
-    Sausage,
-    Stone,
-    Tomato,
-    WatermelonSlice,
-}
