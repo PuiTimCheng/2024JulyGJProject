@@ -48,11 +48,11 @@ public class RankingUI : MonoBehaviour, IUIPanel
             if (i < rankEntriesData.Count)
             {
                 var entry = rankEntriesData[i];
-                entryUI.SetText(i.ToString(), entry.Key.ToString(), entry.Value.ToString());
+                entryUI.SetText($"{i+1}", entry.Key.ToString(), entry.Value.ToString());
             }
             else
             {
-                entryUI.SetText(i.ToString(), "---", "---");
+                entryUI.SetText($"{i+1}", "---", "---");
             }
         }
     }
