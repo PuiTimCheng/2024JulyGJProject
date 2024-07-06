@@ -9,12 +9,17 @@ namespace Battle
             CellsInfo<bool> target, // Food
             CellsInfo<global::Cell> backGround, // Stomach
             Vector2Int placingCor, // The cor in Stomach
-            out List<Vector2Int> eligibleCells)
+            out List<Vector2Int> eligibleCells,
+            out List<Vector2Int> allCells,
+            out bool allInBound
+            )
         {
             bool result = true;
 
             eligibleCells = new List<Vector2Int>();
-
+            allCells = new List<Vector2Int>();
+            allInBound = true;
+            
             for (var i = 0; i < target.Cells.Length; i++)
             {
                 var pivotW = target.Width / 2;
@@ -25,8 +30,11 @@ namespace Battle
                 var foodCor = target.GetCoordinate(i);
                 var newCor = placingCor + new Vector2Int(wOffset, hOffset);
 
-                bool inBound = IsInBound(backGround, newCor);
-
+                var inBound = IsInBound(backGround, newCor);
+                if (!inBound) allInBound = false;
+                
+                allCells.Add(newCor);
+                
                 if (inBound)
                 {
                     var foodCellIsValid = target.GetItem(i);

@@ -41,10 +41,10 @@ MonoBehaviour:
       Data: 2|2
     - Name: 
       Entry: 5
-      Data: true
+      Data: false
     - Name: 
       Entry: 5
-      Data: false
+      Data: true
     - Name: 
       Entry: 5
       Data: true
@@ -64,3 +64,5 @@ MonoBehaviour:
   stage1: {fileID: 21300000, guid: ba88bf723d84b3e45aac92458eb27367, type: 3}
   stage2: {fileID: 21300000, guid: e0c996e3bf17b324fa922b5c08a74661, type: 3}
   plateSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  Phase0Time: 0
+  Phase1Time: 0

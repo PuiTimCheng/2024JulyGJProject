@@ -56,12 +56,24 @@ namespace Battle
                     _curDraggingFood.Orientation,
                     StomachManager.Instance.Cells,
                     StomachManager.Instance.CurrentSelecting.Index,
-                    out var eligibleCells);
+                    out var eligibleCells, out var allCells, out var inBound);
 
                 StomachManager.Instance.SetHighLight(eligibleCells
                     .Select(_ => (_, canPlace ? HighLightType.Valid : HighLightType.Invalid)).ToList());
 
-                if (canPlace)
+                if (inBound)
+                {
+                    var pos = Vector3.zero;
+                    foreach (var cor in allCells)
+                    {
+                        pos += stomach.GetItem(cor).transform.position;
+                    }
+                    pos /= allCells.Count;
+
+                    _curDraggingFood.transform.position = pos;
+                }
+                
+                /*if (canPlace)
                 {
                     var pos = Vector3.zero;
 
@@ -73,7 +85,7 @@ namespace Battle
                     pos /= eligibleCells.Count;
 
                     _curDraggingFood.transform.position = pos;
-                }
+                }*/
             }
             else
             {
@@ -91,21 +103,26 @@ namespace Battle
                     _curDraggingFood.Orientation,
                     StomachManager.Instance.Cells,
                     StomachManager.Instance.CurrentSelecting.Index,
-                    out var eligibleCells);
+                    out var eligibleCells, out var allCells, out var allInBound);
 
                 var stomach = StomachManager.Instance.Cells;
-                // Can use eligibleCells to calculate the position of the food
-
-                if (canPlace)
+                if (canPlace && allInBound)
                 {
                     var pos = Vector3.zero;
+                    foreach (var cor in allCells)
+                    {
+                        pos += stomach.GetItem(cor).transform.position;
+                    }
+                    pos /= allCells.Count;
+                    _curDraggingFood.transform.position = pos;
+                    
+                    /*var pos = Vector3.zero;
 
                     foreach (var cor in eligibleCells)
                     {
                         pos += stomach.GetItem(cor).transform.position;
                     }
-
-                    pos /= eligibleCells.Count;
+                    pos /= eligibleCells.Count;*/
                     
                     _curDraggingFood.StartDigest();
 
