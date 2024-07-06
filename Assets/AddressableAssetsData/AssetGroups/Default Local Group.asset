@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f56b339104e655340ac8209ca8d074ef
+  m_SerializeEntries:
+  - m_GUID: 6dd010275a2d740409e03bf83fe57e53
+    m_Address: Assets/ScriptableObjects/FoodConfig/FoodConfig_Noodle.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a3b6363a87d7ef46ae6a4127ab3685b
+    m_Address: Assets/ScriptableObjects/FoodConfig/FoodConfig_Sausage.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f47653868397c9042b135840c82114fb, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5567c6cb6ba0f1e4cbc2afaa774d27a6, type: 2}
+    - {fileID: 11400000, guid: 19f7b824f2e5718409619a21181c2414, type: 2}

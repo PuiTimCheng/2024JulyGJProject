@@ -42,3 +42,24 @@ public class Food : SerializedMonoBehaviour, IDragHandler, IBeginDragHandler
     }
 }
 
+
+public enum FoodName
+{
+    Noodle,
+    Sausage,
+    Tempura,
+    Watermelon,
+    Beef,
+    PizzaSlice,
+    Shrimp,
+    Egg,
+    Rice,
+    Potato,
+    Fish,
+    Broccoli,
+    Seaweed,
+    Bread,
+    Mushroom,
+    Tomato,
+    Chicken,
+}

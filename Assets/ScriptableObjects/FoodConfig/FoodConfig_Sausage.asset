@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1d66d7aff56bd64b89857a6daf16520, type: 3}
-  m_Name: FoodConfig_Meat
+  m_Name: FoodConfig_Sausage
   m_EditorClassIdentifier: 
   DegradeLevels: 0
   DegradeSprites: []

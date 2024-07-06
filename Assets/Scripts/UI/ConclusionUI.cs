@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UI.GameCanvasUIManager
 {
-    public class ConclusionUIPanel : MonoBehaviour
+    public class ConclusionUI : MonoBehaviour, IUIPanel
     {
         public TextMeshProUGUI scoreText;
         public Button restartBtn;
@@ -15,7 +15,7 @@ namespace UI.GameCanvasUIManager
         {
             restartBtn.onClick.AddListener(GameManager.Instance.LoadPlayScene);
             rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
-            menuBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
+            menuBtn.onClick.AddListener(GameManager.Instance.LoadMenuScene);
         }
 
         public void Show()

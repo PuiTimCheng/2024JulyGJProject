@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Util;
 using IState = TimToolBox.DesignPattern.StateMachine.IState;
+using Random = UnityEngine.Random;
 using StateMachine = TimToolBox.DesignPattern.StateMachine.StateMachine;
 
 /// <summary>
@@ -16,18 +17,21 @@ using StateMachine = TimToolBox.DesignPattern.StateMachine.StateMachine;
 public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneController>
 {
     public StateMachine GameStateMachine;
-    public GameData GameData;
+    public FoodConveyor foodConveyor;
+    public PlayData PlayData;
     
     private void Start()
     {
         GameStateMachine = new StateMachine();
 
+        var instructionState = new InstructionState();
         var playState = new PlayState();
         var conclusionState = new ConclusionState();
         
+        GameStateMachine.AddTransition(instructionState, playState, new FuncPredicate(instructionState.IsClicked));
         GameStateMachine.AddTransition(playState, conclusionState, new FuncPredicate(playState.IsTimesUp));
         
-        GameStateMachine.ChangeStateTo<PlayState>();
+        GameStateMachine.ChangeStateTo<InstructionState>();
     }
 
     private void Update()
@@ -35,6 +39,30 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         GameStateMachine.Update();
     }
 
+    public class InstructionState : IState
+    {
+        private bool _clicked;
+        public void OnEnterState()
+        {
+            _clicked = false;
+            GameCanvasUIManager.Instance.ShowInstruction();
+        }
+
+        public void OnUpdateState()
+        {
+            if(Input.GetMouseButtonDown(0)) _clicked = true;
+        }
+
+        public void OnExitState()
+        {
+        }
+
+        public bool IsClicked()
+        {
+            return _clicked;
+        }
+    }
+    
     public class PlayState : IState
     {
         private CountdownTimer _playtimer;
@@ -45,10 +73,12 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         }
         public void OnEnterState()
         {
-            GameCanvasUIManager.Instance.conclusionUIPanel.Hide();
-            Instance.GameData = new GameData(); //reset all game data
-            _playtimer.Reset(2);
+            GameCanvasUIManager.Instance.ShowGamePlayUI();
+            Instance.PlayData = new PlayData(); //reset all game data
+            _playtimer.Reset(999);
             _playtimer.Start();
+            
+            Instance.foodConveyor.Initiate(new System.Random().Next());
         }
 
         public void OnUpdateState()
@@ -70,7 +100,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     {
         public void OnEnterState()
         {
-            GameCanvasUIManager.Instance.conclusionUIPanel.Show();
+            GameCanvasUIManager.Instance.conclusionUI.Show();
         }
 
         public void OnUpdateState()

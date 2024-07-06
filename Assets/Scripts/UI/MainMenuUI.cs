@@ -5,19 +5,15 @@ namespace UI
 {
     public class MainMenuUI : MonoBehaviour
     {
+        public Button startBtn;
         public Button rankingBtn;
         public Button creditsBtn;
 
         private void Start()
         {
-            rankingBtn.onClick.AddListener(ShowRanking);
+            startBtn.onClick.AddListener(GameManager.Instance.LoadPlayScene);
+            rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
             creditsBtn.onClick.AddListener(ShowCredits);
-        }
-
-        private void ShowRanking()
-        {
-            //show ranking ui here
-            Debug.Log("ranking");
         }
 
         private void ShowCredits()
