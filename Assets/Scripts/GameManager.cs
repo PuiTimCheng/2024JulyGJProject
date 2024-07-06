@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Battle;
 using MoreMountains.Feedbacks;
 using TimToolBox.Extensions;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Serialization;
 
 public class GameManager : PersistentSingleton<GameManager>
 {

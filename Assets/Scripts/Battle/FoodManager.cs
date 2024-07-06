@@ -36,78 +36,82 @@ namespace Battle
             // TODO: switch to new inputsystem if necessary
             if (Input.GetMouseButton(0))
             {
-                if (StomachManager.Instance.CurrentSelecting != null &&
-                    StomachManager.Instance.CurrentSelecting.CellState != CellState.Inactive)
+                OnMouseHold();
+            }
+            else
+            {
+                OnMouseUp();
+            }
+        }
+        
+        void OnMouseHold()
+        {
+            if (StomachManager.Instance.CurrentSelecting != null &&
+                StomachManager.Instance.CurrentSelecting.CellState != CellState.Inactive)
+            {
+                var stomach = StomachManager.Instance.Cells;
+
+                var canPlace = CellsExtensions.CanPlaced(
+                    _curDraggingFood.Orientation,
+                    StomachManager.Instance.Cells,
+                    StomachManager.Instance.CurrentSelecting.Index,
+                    out var eligibleCells);
+
+                StomachManager.Instance.SetHighLight(eligibleCells
+                    .Select(_ => (_, canPlace ? HighLightType.Valid : HighLightType.Invalid)).ToList());
+
+                if (canPlace)
                 {
-                    var stomach = StomachManager.Instance.Cells;
+                    var pos = Vector3.zero;
 
-                    var canPlace = CellsExtensions.CanPlaced(
-                        _curDraggingFood.Orientation,
-                        StomachManager.Instance.Cells,
-                        StomachManager.Instance.CurrentSelecting.Index,
-                        out var eligibleCells);
-
-                    StomachManager.Instance.SetHighLight(eligibleCells
-                        .Select(_ => (_, canPlace ? HighLightType.Valid : HighLightType.Invalid)).ToList());
-                    
-                    if (canPlace)
+                    foreach (var cor in eligibleCells)
                     {
-                        var pos = Vector3.zero;
-
-                        foreach (var cor in eligibleCells)
-                        {
-                            pos += stomach.GetItem(cor).transform.position;
-                        }
-
-                        pos /= eligibleCells.Count;
-
-                        _curDraggingFood.transform.position = pos;
+                        pos += stomach.GetItem(cor).transform.position;
                     }
-                }
-                else
-                {
-                    _curDraggingFood.transform.position = Input.mousePosition;
+
+                    pos /= eligibleCells.Count;
+
+                    _curDraggingFood.transform.position = pos;
                 }
             }
             else
             {
-                // Basically is on mouse up
-                if (StomachManager.Instance.CurrentSelecting != null &&
-                    StomachManager.Instance.CurrentSelecting.CellState != CellState.Inactive)
+                _curDraggingFood.transform.position = Input.mousePosition;
+            }
+        }
+
+        void OnMouseUp()
+        {
+            // Basically is on mouse up
+            if (StomachManager.Instance.CurrentSelecting != null &&
+                StomachManager.Instance.CurrentSelecting.CellState != CellState.Inactive)
+            {
+                var canPlace = CellsExtensions.CanPlaced(
+                    _curDraggingFood.Orientation,
+                    StomachManager.Instance.Cells,
+                    StomachManager.Instance.CurrentSelecting.Index,
+                    out var eligibleCells);
+
+                var stomach = StomachManager.Instance.Cells;
+                // Can use eligibleCells to calculate the position of the food
+
+                if (canPlace)
                 {
-                    var canPlace = CellsExtensions.CanPlaced(
-                        _curDraggingFood.Orientation,
-                        StomachManager.Instance.Cells,
-                        StomachManager.Instance.CurrentSelecting.Index,
-                        out var eligibleCells);
+                    var pos = Vector3.zero;
 
-                    var stomach = StomachManager.Instance.Cells;
-                    // Can use eligibleCells to calculate the position of the food
-
-                    if (canPlace)
+                    foreach (var cor in eligibleCells)
                     {
-                        var pos = Vector3.zero;
-
-                        foreach (var cor in eligibleCells)
-                        {
-                            pos += stomach.GetItem(cor).transform.position;
-                        }
-
-                        pos /= eligibleCells.Count;
-
-                        _curDraggingFood.transform.position = pos;
-                        _curDraggingFood.SetParentCells(eligibleCells);
-                        _curDraggingFood = null;
-
-                        StomachManager.Instance.SetCellState(eligibleCells
-                            .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList());
+                        pos += stomach.GetItem(cor).transform.position;
                     }
-                    else
-                    {
-                        // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
-                        _curDraggingFood.OnDiscard();
-                        _curDraggingFood = null;
-                    }
+
+                    pos /= eligibleCells.Count;
+
+                    _curDraggingFood.transform.position = pos;
+                    _curDraggingFood.SetParentCells(eligibleCells);
+                    _curDraggingFood = null;
+
+                    StomachManager.Instance.SetCellState(eligibleCells
+                        .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList());
                 }
                 else
                 {
@@ -116,6 +120,13 @@ namespace Battle
                     _curDraggingFood = null;
                 }
             }
+            else
+            {
+                // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
+                _curDraggingFood.OnDiscard();
+                _curDraggingFood = null;
+            }
         }
+
     }
 }

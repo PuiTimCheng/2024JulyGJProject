@@ -15,5 +15,7 @@ namespace Battle
         [PreviewField] public Sprite stage1;
         [PreviewField] public Sprite stage2;
         [PreviewField] public Sprite plateSprite;
+        [SerializeField] public float Phase0Time;
+        [SerializeField] public float Phase1Time;
     }
 }
