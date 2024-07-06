@@ -53,6 +53,11 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         GameCanvasUIManager.Instance.playScoreUI.UpdateScore(PlayData.Score);
     }
 
+    public void PauseAndUnPause()
+    {
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+    }
+    
     [Button]
     public void EndGameNow()
     {
