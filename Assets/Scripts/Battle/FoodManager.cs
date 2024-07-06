@@ -1,36 +1,43 @@
-using System;
 using System.Linq;
+using Battle.Cell;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class FoodManager : MonoBehaviour
+namespace Battle
 {
-    public static FoodManager Instance;
-
-    public Food _curDraggingFood { get; private set; }
-
-    void Awake()
+    public enum DragMode
     {
-        Instance = this;
+        Free,
+        Snap
     }
 
-    public void StartDrag(Food draggable)
+    public class FoodManager : MonoBehaviour
     {
-        Debug.Log("StartDrag");
-        if (_curDraggingFood)
+        public static FoodManager Instance;
+
+        public Food _curDraggingFood { get; private set; }
+
+        void Awake()
         {
-            Debug.LogError("Current is dragging. ");
-            return;
+            Instance = this;
         }
 
-        _curDraggingFood = draggable;
-        _curDraggingFood.SetRaycastable(false);
-    }
-
-    void Update()
-    {
-        if (_curDraggingFood)
+        public void StartDrag(Food draggable)
         {
+            Debug.Log("StartDrag");
+            if (_curDraggingFood)
+            {
+                Debug.LogError("Current is dragging. ");
+                return;
+            }
+
+            _curDraggingFood = draggable;
+            _curDraggingFood.SetRaycastAble(false);
+        }
+
+        private void Update()
+        {
+            if (!_curDraggingFood) return;
             StomachManager.Instance.ClearHighLight();
 
             // TODO: switch to new inputsystem if necessary
