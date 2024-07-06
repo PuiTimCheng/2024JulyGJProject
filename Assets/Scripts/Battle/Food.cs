@@ -13,6 +13,8 @@ namespace Battle
         [SerializeField] private Image _img;
         private List<Vector2Int> _parentCells;
         public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
+        private Plate _fromPlate;
+        
         FoodData _data;
         float _curTime;
         int _curPhase;
@@ -27,15 +29,16 @@ namespace Battle
                 switch (_curPhase)
                 {
                     case 0:
-                        if (_curTime >= _data.Phase0Time)
+                        //if (_curTime >= _data.Phase0Time)
+                        if (_curTime >= 3)
                         {
                             _curPhase++;
-                            _img.sprite = _data.stage2;
                             // TODO: Add Cell VFX?
                         }
                         break;
                     case 1:
-                        if (_curTime >= _data.Phase1Time)
+                        //if (_curTime >= _data.Phase1Time)
+                        if (_curTime >= 6)
                         {
                             OnDigest();
                         }
@@ -49,10 +52,12 @@ namespace Battle
             _data = data;
             _img.sprite = data.stage1;
             _img.SetNativeSize();
+            _fromPlate = transform.parent.GetComponent<Plate>();
         }
 
         public void StartDigest()
         {
+            Debug.Log($"Start Disgest ");
             _curTime = 0;
             _curPhase = 0;
             _digesting = true;
@@ -61,6 +66,7 @@ namespace Battle
         public void OnBeginDrag(PointerEventData eventData)
         {
             FoodManager.Instance.StartDrag(this);
+            _fromPlate?.ClearCellPresenter();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -93,6 +99,8 @@ namespace Battle
         public void OnDigest()
         {
             _digesting = false;
+            //PlaySceneController.Instance.AddScore(_data.foodScore);
+            PlaySceneController.Instance.AddScore(100);
             StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
             OnDiscard(); // TEMP
         }
@@ -109,11 +117,19 @@ namespace Battle
 public enum FoodName
 {
     Beef,
+    Biscuit,
+    Bread,
+    Broccoli,
     Cake,
+    Chicken,
     Egg,
+    Fish,
+    Mushroom,
     Noodle,
     Prawn,
     Rice,
     Sausage,
-    WatermelonSlice
+    Stone,
+    Tomato,
+    WatermelonSlice,
 }

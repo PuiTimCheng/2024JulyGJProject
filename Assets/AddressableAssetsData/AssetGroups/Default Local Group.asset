@@ -67,6 +67,46 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 320ffb077863c7947ba9dc2f4977acba
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Biscuit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b894daab1934be4ab0fab6149d76909
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Bread.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c349466ee35a1de41a52a90554f1e8f0
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Broccoli.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fe6e2ed1fcc7f040aaf25d11b3daa99
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Chicken.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4375ebd0f378664a8d58d9333d22bb0
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Fish.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2651263e8196e5e45954bd6d9ae2da00
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Mushroom.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61b6f08bbfb816341893a1382409f45d
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Stone.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 122fdf56698c23343a8247bb1edf3374
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Tomato.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f47653868397c9042b135840c82114fb, type: 2}
   m_SchemaSet:

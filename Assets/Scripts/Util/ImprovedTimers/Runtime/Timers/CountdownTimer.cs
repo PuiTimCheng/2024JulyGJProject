@@ -18,5 +18,11 @@ namespace ImprovedTimers {
         }
 
         public override bool IsFinished => CurrentTime <= 0;
+        
+        public void ChangeTime(float newTime) {
+            
+            initialTime = newTime;
+            Reset();
+        }
     }
 }

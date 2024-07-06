@@ -26,6 +26,7 @@ namespace Battle
             _curDraggingFood = draggable;
             _curDraggingFood.SetRaycastAble(false);
             _curDraggingFood.transform.SetParent(transform);
+            _curDraggingFood.GetComponent<RectTransform>().localScale = Vector3.one * 2;
         }
 
         private void Update()
@@ -105,10 +106,13 @@ namespace Battle
                     }
 
                     pos /= eligibleCells.Count;
+                    
+                    _curDraggingFood.StartDigest();
 
                     _curDraggingFood.transform.position = pos;
                     _curDraggingFood.SetParentCells(eligibleCells);
                     _curDraggingFood = null;
+
 
                     StomachManager.Instance.SetCellState(eligibleCells
                         .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList());
