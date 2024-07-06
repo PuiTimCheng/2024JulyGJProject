@@ -16,6 +16,8 @@ public class CellsInfo<T>
     [TableMatrix(HorizontalTitle = "Cells", SquareCells = true)]
     public T[,] Cells;
 
+    public int Count => Cells.Length;
+
     [Button]
     public void Generate()
     {
