@@ -67,11 +67,12 @@ namespace Battle
             }
         }
 
-        public void SetCellState(List<(Vector2Int, CellState)> cellStateList)
+        public void SetCellState(List<(Vector2Int, CellState)> cellStateList, Food food = null)
         {
             foreach (var (cor, state) in cellStateList)
             {
                 Cells.GetItem(cor).SetCellState(state);
+                Cells.GetItem(cor).SetFood(food);
             }
         }
     }

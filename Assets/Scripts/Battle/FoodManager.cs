@@ -128,11 +128,11 @@ namespace Battle
 
                     _curDraggingFood.transform.position = pos;
                     _curDraggingFood.SetParentCells(eligibleCells);
-                    _curDraggingFood = null;
 
 
                     StomachManager.Instance.SetCellState(eligibleCells
-                        .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList());
+                        .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList(), _curDraggingFood);
+                    _curDraggingFood = null;
                 }
                 else
                 {

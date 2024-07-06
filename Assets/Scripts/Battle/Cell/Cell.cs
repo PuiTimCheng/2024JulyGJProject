@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Battle;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
     [ShowInInspector]public Vector2Int Index { get; private set; }
     public CellState CellState { get; private set; }
     public HighLightType HighLightType { get; private set; }
+
+    public Food food;
     
     public void Init(Vector2Int index, CellState state, HighLightType highLightType)
     {
@@ -67,5 +70,43 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerExit(PointerEventData eventData)
     {
         StomachManager.Instance.DeselectCell();
+    }
+
+    public void SetFood(Food obj)
+    {
+        food = obj;
+    }
+    
+    public bool CanCombineWithNeighbors()
+    {
+        if (CellState != CellState.Occupied || food == null)
+            return false;
+
+        List<Vector2Int> neighborsPositions = new List<Vector2Int>
+        {
+            new Vector2Int(Index.x, Index.y + 1), // 上
+            new Vector2Int(Index.x, Index.y - 1), // 下
+            new Vector2Int(Index.x + 1, Index.y), // 右
+            new Vector2Int(Index.x - 1, Index.y)  // 左
+        };
+
+        foreach (var pos in neighborsPositions)
+        {
+            if (!StomachManager.Instance.Cells.IsValidPosition(pos)) continue;
+            var neighborCell = StomachManager.Instance.Cells.GetItem(pos);
+            if (neighborCell == null || neighborCell.CellState != CellState.Occupied ||
+                neighborCell.food == null) continue;
+            
+            foreach (var formula in food._data.foodFormulas)
+            {
+                if (formula.combineFood == neighborCell.food._data.foodName)
+                {
+                    //todo: 
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

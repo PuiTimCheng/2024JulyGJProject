@@ -51,4 +51,10 @@ public class CellsInfo<T>
     }
 
     public void SetItem(Vector2Int cor, T item) => this.Cells[cor.x, cor.y] = item;
+    
+    public bool IsValidPosition(Vector2Int cor)
+    {
+        return cor.x >= 0 && cor.x < Width && cor.y >= 0 && cor.y < Height;
+    }
+
 }
