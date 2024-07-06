@@ -8,6 +8,8 @@ namespace UI.GameCanvasUIManager
         public InstructionUI instructionUI;
         public GamePlayUI gamePlayUI;
         public ConclusionUI conclusionUI;
+        public PlayTimerUI playTimerUI;
+        public PlayScoreUI playScoreUI;
 
         public void ShowInstruction()
         {

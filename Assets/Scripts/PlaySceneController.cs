@@ -5,6 +5,7 @@ using TimToolBox.DesignPattern.StateMachine;
 using TimToolBox.Extensions;
 using UI.GameCanvasUIManager;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Util;
 using IState = TimToolBox.DesignPattern.StateMachine.IState;
@@ -37,8 +38,20 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     private void Update()
     {
         GameStateMachine.Update();
+        
+        //TODO test score
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            AddScore(1);
+        }
     }
-
+    
+    public void AddScore(int score)
+    {
+        PlayData.Score += score;
+        GameCanvasUIManager.Instance.playScoreUI.UpdateScore(PlayData.Score);
+    }
+    
     public class InstructionState : IState
     {
         private bool _clicked;
@@ -75,15 +88,17 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             GameCanvasUIManager.Instance.ShowGamePlayUI();
             Instance.PlayData = new PlayData(); //reset all game data
-            _playtimer.Reset(999);
+            _playtimer.Reset(120);
             _playtimer.Start();
             
             Instance.foodConveyor.Initiate(new System.Random().Next());
+            GameCanvasUIManager.Instance.playScoreUI.UpdateScore(Instance.PlayData.Score);
         }
 
         public void OnUpdateState()
         {
-            Debug.Log($"PlayTime : {_playtimer.CurrentTime}");
+            GameCanvasUIManager.Instance.playTimerUI.UpdateTime(_playtimer.CurrentTime);
+            //Debug.Log($"PlayTime : {_playtimer.CurrentTime}");
         }
 
         public void OnExitState()
