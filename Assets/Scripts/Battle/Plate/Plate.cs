@@ -13,6 +13,7 @@ public class Plate : MonoBehaviour
         _food.InitFood(data);
         _cellPresenter.GenerateCell(data);
         _plate.sprite = data.plateSprite;
+        _plate.SetNativeSize();
     }
 
     public static Plate BuildPlate(FoodData foodData)

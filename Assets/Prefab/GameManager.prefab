@@ -191,7 +191,7 @@ MonoBehaviour:
         DebugActive: 0
         LoadingSceneName: Menu
         DestinationSceneName: Menu
-        LoadingMode: 2
+        LoadingMode: 0
         Priority: 4
         InterpolateProgress: 1
         SecureLoad: 1
@@ -307,6 +307,7 @@ MonoBehaviour:
   AutoUnparentOnAwake: 1
   loadPlayScenePlayer: {fileID: 8414462399339368317}
   loadMenuScenePlayer: {fileID: 5839332313402048250}
+  platePrefab: {fileID: 0}
 --- !u!1 &8818659502538942179
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ MonoBehaviour:
         DebugActive: 0
         LoadingSceneName: Play
         DestinationSceneName: Play
-        LoadingMode: 2
+        LoadingMode: 0
         Priority: 4
         InterpolateProgress: 1
         SecureLoad: 1

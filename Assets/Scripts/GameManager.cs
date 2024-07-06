@@ -28,6 +28,9 @@ public class GameManager : PersistentSingleton<GameManager>
             var path = $"Assets/ScriptableObjects/FoodData/FoodData_{foodName}.asset";
             CheckAndLoadFoodData(path, foodName);
         }
+        
+        //load saved ranking data
+        rankingData = ES3.Load(RankingDataSaveKey, new Dictionary<string, int>());
     }
 
     private async void CheckAndLoadFoodData(string path, string foodName)
@@ -45,11 +48,18 @@ public class GameManager : PersistentSingleton<GameManager>
                 }
             }
         }
-        
-        //load saved ranking data
-        rankingData = ES3.Load(RankingDataSaveKey, new Dictionary<string, int>());
     }
 
+    public void SaveScore()
+    {
+        
+    }
+
+    public Dictionary<string, int> LoadScore()
+    {
+        return null;
+    }
+    
     public void LoadPlayScene()
     {
         loadPlayScenePlayer.Initialization();
