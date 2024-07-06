@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 116a13e685a14544fba8ae3d984dba77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80dd0eac2b26ed74e80bb95c423b8233, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -294,6 +294,16 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  randomSprites:
+  - {fileID: 21300000, guid: 80dd0eac2b26ed74e80bb95c423b8233, type: 3}
+  - {fileID: 21300000, guid: 1fe1ec7bec15e6e4f803d17894d54c41, type: 3}
+  - {fileID: 21300000, guid: baf41435906981b4fa86a8e1f37c2a14, type: 3}
+  - {fileID: 21300000, guid: 5e7d49258f63f7d408b68fa15410921d, type: 3}
+  - {fileID: 21300000, guid: b44e89c56d585ee4db14ed943a3ebb34, type: 3}
+  - {fileID: 21300000, guid: 9817b9934fe802744b18bd6e1701379a, type: 3}
+  - {fileID: 21300000, guid: dd5bce909f484ab4e9b434a85d584fac, type: 3}
+  - {fileID: 21300000, guid: 98d98db3db11f6d4689285ac96e715a3, type: 3}
   _raycastImage: {fileID: 3801550203617942867}
   _stateImage: {fileID: 1399389671856789350}
   _highLightImage: {fileID: 3755012863980924360}
+  food: {fileID: 0}

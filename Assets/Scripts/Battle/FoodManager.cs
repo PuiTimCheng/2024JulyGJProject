@@ -27,7 +27,7 @@ namespace Battle
             _curDraggingFood = draggable;
             _curDraggingFood.SetRaycastAble(false);
             _curDraggingFood.transform.SetParent(transform);
-            _curDraggingFood.GetComponent<RectTransform>().localScale = Vector3.one * 1.4f; //magic number from stomachBackGround scale
+            _curDraggingFood.GetComponent<RectTransform>().localScale = Vector3.one * StomachManager.Instance.rectTransform.localScale.x;
         }
 
         private void Update()

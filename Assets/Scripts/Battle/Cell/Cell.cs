@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Battle;
 using Sirenix.OdinInspector;
+using TimToolBox.Extensions;
 using UI.GameCanvasUIManager;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +10,8 @@ using UnityEngine.UI;
 
 public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public Sprite[] randomSprites; 
+    
     [SerializeField] Image _raycastImage; // For raycast only
     [SerializeField] Image _stateImage;
     [SerializeField] Image _highLightImage;
@@ -25,6 +28,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void Init(Vector2Int index, CellState state, HighLightType highLightType)
     {
         Index = index;
+        _stateImage.sprite = randomSprites.RandomPickOne();
         SetCellState(state);
         SetHighLightType(highLightType);
     }
