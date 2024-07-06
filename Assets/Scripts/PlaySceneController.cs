@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Battle;
 using ImprovedTimers;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
@@ -52,7 +54,12 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         PlayData.Score += score;
         GameCanvasUIManager.Instance.playScoreUI.UpdateScore(PlayData.Score);
     }
-
+    public void AddEatenDish(FoodName foodName)
+    {
+        var oldValue = PlayData.EatenFood.GetValueOrDefault(foodName, 0);
+        PlayData.EatenFood.TryAdd(foodName, oldValue + 1);
+    }
+    
     public void PauseAndUnPause()
     {
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
@@ -135,7 +142,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         public void OnEnterState()
         {
             GameCanvasUIManager.Instance.conclusionUI.Show();
-            GameCanvasUIManager.Instance.conclusionUI.scoreText.text = Instance.PlayData.Score.ToString();
+            GameCanvasUIManager.Instance.conclusionUI.InitWithPlayDataResult(Instance.PlayData);
         }
 
         public void OnUpdateState()
