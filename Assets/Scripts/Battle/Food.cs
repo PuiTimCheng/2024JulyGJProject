@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -55,6 +56,17 @@ namespace Battle
         public void OnDiscard()
         {
             Destroy(gameObject);
+        }
+        
+        public void ScaleUp()
+        {
+            transform.DOScale(1.1f, 0.5f).SetEase(Ease.OutQuad);
+        }
+
+        // 恢复到原始大小1.0的方法
+        public void ScaleDown()
+        {
+            transform.DOScale(1.0f, 0.5f).SetEase(Ease.InQuad);
         }
     }
 }
