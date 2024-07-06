@@ -10,6 +10,7 @@ namespace UI.GameCanvasUIManager
         public ConclusionUI conclusionUI;
         public PlayTimerUI playTimerUI;
         public PlayScoreUI playScoreUI;
+        public UIEffectManager uIEffectManager;
 
         public void ShowInstruction()
         {

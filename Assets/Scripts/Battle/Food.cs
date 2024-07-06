@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,6 +18,7 @@ namespace Battle
         float _curTime;
         int _curPhase;
         bool _digesting;
+        public ParticleSystem BurstEffect;
         
         void Update()
         {
@@ -110,6 +110,11 @@ namespace Battle
         public void OnDiscard()
         {
             Destroy(gameObject);
+        }
+
+        public void Burst()
+        {
+            BurstEffect.Play();
         }
     }
 }

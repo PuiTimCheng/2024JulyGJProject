@@ -68,6 +68,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _img: {fileID: 9156187091909171863}
+  _data: {fileID: 0}
+  BurstEffect: {fileID: 0}
 --- !u!114 &9156187091909171863
 MonoBehaviour:
   m_ObjectHideFlags: 0

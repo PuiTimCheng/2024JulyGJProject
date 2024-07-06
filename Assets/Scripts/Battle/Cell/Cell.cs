@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Battle;
 using Sirenix.OdinInspector;
+using UI.GameCanvasUIManager;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -104,6 +105,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
                     StomachManager.Instance.Cells.DestroyCellByType(formula.combineFood);
                     food._img.sprite = formula.finalFoodSprite;
                     food._data.foodName = formula.finalFood;
+                    GameCanvasUIManager.Instance.uIEffectManager.Burst(food.transform.localPosition);
                     return true;
                 }
             }
