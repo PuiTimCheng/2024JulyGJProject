@@ -14,7 +14,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
     Dictionary<HighLightType, Sprite> _highLightSpriteDic;
     Dictionary<CellState, Sprite> _stateSpriteDic;
 
-    public Vector2Int Index { get; private set; }
+    [ShowInInspector]public Vector2Int Index { get; private set; }
     public CellState CellState { get; private set; }
     public HighLightType HighLightType { get; private set; }
 

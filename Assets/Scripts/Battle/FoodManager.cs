@@ -39,6 +39,8 @@ namespace Battle
                 if (StomachManager.Instance.CurrentSelecting != null &&
                     StomachManager.Instance.CurrentSelecting.CellState != CellState.Inactive)
                 {
+                    var stomach = StomachManager.Instance.Cells;
+
                     var canPlace = CellsExtensions.CanPlaced(
                         _curDraggingFood.Orientation,
                         StomachManager.Instance.Cells,
@@ -47,6 +49,20 @@ namespace Battle
 
                     StomachManager.Instance.SetHighLight(eligibleCells
                         .Select(_ => (_, canPlace ? HighLightType.Valid : HighLightType.Invalid)).ToList());
+                    
+                    if (canPlace)
+                    {
+                        var pos = Vector3.zero;
+
+                        foreach (var cor in eligibleCells)
+                        {
+                            pos += stomach.GetItem(cor).transform.position;
+                        }
+
+                        pos /= eligibleCells.Count;
+
+                        _curDraggingFood.transform.position = pos;
+                    }
                 }
                 else
                 {
