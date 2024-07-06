@@ -7,6 +7,7 @@ namespace UI.GameCanvasUIManager
     public class ConclusionUI : MonoBehaviour, IUIPanel
     {
         public TextMeshProUGUI scoreText;
+        public TMP_InputField nameInputField;
         public Button restartBtn;
         public Button rankingBtn;
         public Button menuBtn;
@@ -16,6 +17,7 @@ namespace UI.GameCanvasUIManager
             restartBtn.onClick.AddListener(GameManager.Instance.LoadPlayScene);
             rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
             menuBtn.onClick.AddListener(GameManager.Instance.LoadMenuScene);
+            nameInputField.onEndEdit.AddListener(PlaySceneController.Instance.SaveScore);
         }
 
         public void Show()
@@ -27,7 +29,5 @@ namespace UI.GameCanvasUIManager
         {
             gameObject.SetActive(false);
         }
-        
-        
     }
 }

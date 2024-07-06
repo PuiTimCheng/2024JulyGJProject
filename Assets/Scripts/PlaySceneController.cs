@@ -1,6 +1,7 @@
 using System;
 using ImprovedTimers;
 using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 using TimToolBox.DesignPattern.StateMachine;
 using TimToolBox.Extensions;
 using UI.GameCanvasUIManager;
@@ -50,6 +51,20 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     {
         PlayData.Score += score;
         GameCanvasUIManager.Instance.playScoreUI.UpdateScore(PlayData.Score);
+    }
+
+    [Button]
+    public void EndGameNow()
+    {
+        GameStateMachine.ChangeStateTo<ConclusionState>();
+    }
+
+    public void SaveScore(string playerName)
+    {
+        var dict = GameManager.Instance.rankingData;
+        dict.Add(playerName, PlayData.Score);
+        ES3.Save(GameManager.RankingDataSaveKey, dict);
+        Debug.Log($"Score Saved {playerName}:{PlayData.Score}");
     }
     
     public class InstructionState : IState
