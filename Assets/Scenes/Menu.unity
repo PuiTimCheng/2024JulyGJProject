@@ -853,6 +853,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5839332313402048250, guid: 50a1f6ec57a27e54aa900d4457c9466a, type: 3}
+      propertyPath: managedReferences[4707718601669083139].LoadingSceneName
+      value: Loading
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414462399339368317, guid: 50a1f6ec57a27e54aa900d4457c9466a, type: 3}
+      propertyPath: managedReferences[4707718601669083139].LoadingSceneName
+      value: Loading
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
