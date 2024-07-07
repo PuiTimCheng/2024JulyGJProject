@@ -29,6 +29,11 @@ namespace Battle
             _curDraggingFood.SetRaycastAble(false);
             _curDraggingFood.transform.SetParent(transform);
             _curDraggingFood.GetComponent<RectTransform>().localScale = Vector3.one * StomachManager.Instance.rectTransform.localScale.x;
+
+            if (_curDraggingFood.foodName == FoodName.Biscuit)
+            {
+                _curDraggingFood.GetComponent<RectTransform>().localScale *= 3;
+            }
             
             AudioManager.Instance.PlaySFX(SFXType.Drag);
         }

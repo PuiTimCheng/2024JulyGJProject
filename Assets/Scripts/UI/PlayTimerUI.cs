@@ -28,7 +28,7 @@ public class PlayTimerUI : MonoBehaviour
     private void UpdateFirePosition(float value)
     {
         float startPosition = -650f;
-        float endPosition = 650f;
+        float endPosition = 675f;
         float newPosition = Mathf.Lerp(startPosition, endPosition, value);
         fireRect.anchoredPosition = new Vector3(fireRect.anchoredPosition.x, newPosition, 0);
     }
