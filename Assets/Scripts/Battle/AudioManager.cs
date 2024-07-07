@@ -199,6 +199,11 @@ public class AudioManager : SerializedMonoBehaviour
 
     public void FadeOutAmbience()
     {
+        if (!_ambSource.isPlaying)
+        {
+            return;
+        }
+        
         if (_ambFadeCoroutine != null)
         {
             StopCoroutine(_ambFadeCoroutine);

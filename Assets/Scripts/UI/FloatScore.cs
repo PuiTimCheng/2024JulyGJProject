@@ -18,7 +18,7 @@ namespace UI
             Available = false;
             text.text = add ? $"+{score}" :  $"-{score}" ;
             //play score animation here
-            _animator.Play("FloatScore");
+            _animator.Play(add ? "FloatScore_Add" : "FloatScore_Minues");
             StartCoroutine(PlayAnimation());
         }
 

@@ -79,5 +79,16 @@ namespace Battle
 
             Cells.CheckCombine();
         }
+
+        public void ResetCellState()
+        {
+            foreach (var cell in Cells.Cells)
+            {
+                if (cell.CellState != CellState.Inactive)
+                {
+                    cell.SetCellState(CellState.Empty);
+                }
+            }
+        }
     }
 }

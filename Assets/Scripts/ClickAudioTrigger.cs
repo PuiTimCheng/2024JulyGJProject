@@ -15,7 +15,6 @@ public class ClickAudioTrigger : MonoBehaviour
 
     public void PlayClickAudio()
     {
-        Debug.Log("Play Click");
         AudioManager.Instance.PlaySFX(SFXType.Click);
     }
 }

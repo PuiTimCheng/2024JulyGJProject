@@ -51,6 +51,7 @@ namespace Battle
 
         public void ClearFood()
         {
+            StomachManager.Instance.ResetCellState();
             transform.DestroyChildren();
         }
         void OnMouseHold()
