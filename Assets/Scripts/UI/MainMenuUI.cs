@@ -16,19 +16,14 @@ namespace UI
         
         private void Start()
         {
-            startBtn.onClick.AddListener(OpenPlayScene);
-            rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
-            creditsBtn.onClick.AddListener(ShowCredits);
-            AudioManager.Instance.PlayBGM(BGMType.Menu);
-        }
-
-        void OpenPlayScene()
-        {
-            AudioManager.Instance.PlaySFX(SFXType.Start);
-            GameManager.Instance.LoadPlayScene();
-            startBtn.onClick.AddListener(()=> { ClickButtonAnimation(startBtn, GameManager.Instance.LoadComicScene); });
+            startBtn.onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlaySFX(SFXType.Start);
+                ClickButtonAnimation(startBtn, GameManager.Instance.LoadComicScene);
+            });
             rankingBtn.onClick.AddListener(()=> { ClickButtonAnimation(rankingBtn, GameManager.Instance.ShowRanking); } );
             creditsBtn.onClick.AddListener(()=> { ClickButtonAnimation(creditsBtn, ShowCredits); } );
+            AudioManager.Instance.PlayBGM(BGMType.Menu);
         }
 
         private void ClickButtonAnimation(Button btn, Action afterAcion)

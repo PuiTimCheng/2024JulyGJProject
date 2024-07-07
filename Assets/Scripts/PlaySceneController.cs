@@ -172,7 +172,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     
     public class ConclusionState : IState
     {
-        public void OnEnterState()
+        public void OnEnterState()  
         {
             GameCanvasUIManager.Instance.conclusionUI.Show();
             GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
