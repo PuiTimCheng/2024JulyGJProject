@@ -28,7 +28,8 @@ public enum SFXType
     Trash,
     R_Start,
     R_Print,
-    R_End
+    R_End,
+    GameStart
 }
 
 public class AudioManager : SerializedMonoBehaviour

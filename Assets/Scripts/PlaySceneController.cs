@@ -107,12 +107,15 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         public void OnEnterState()
         {
             _clicked = false;
+            AudioManager.Instance.PauseBGM();
+            AudioManager.Instance.PlaySFX(SFXType.GameStart);
+            AudioManager.Instance.FadeInAmbience();
             GameCanvasUIManager.Instance.ShowInstruction();
         }
 
         public void OnUpdateState()
         {
-            if(Input.GetMouseButtonDown(0)) _clicked = true;
+            if(Input.GetMouseButtonDown(0)) {_clicked = true;}
         }
 
         public void OnExitState()
@@ -143,7 +146,6 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
             Instance.PlayData = new PlayData(); //reset all game data
             
             AudioManager.Instance.PlayBGM(BGMType.Game);
-            AudioManager.Instance.FadeInAmbience();
             GameCanvasUIManager.Instance.playScoreUI.UpdateScore(Instance.PlayData.Score);
             GameCanvasUIManager.Instance.StartAndEndText.ShowText("时间不多了哦，抓紧时间吃！");
             
@@ -180,12 +182,14 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         public void OnEnterState()
         {
             showedResult = false;
-            //stop everything 
+            //stop everything
+            FoodManager.Instance.ClearFood();
             instance.foodConveyor.Stop();
             GameCanvasUIManager.Instance.StartAndEndText.ShowText("时间到了！没把你撑着吧？");
             
             DOVirtual.DelayedCall(2, () =>
             {
+                GameCanvasUIManager.Instance.playTimerUI.StopFire();
                 GameCanvasUIManager.Instance.conclusionUI.Show();
                 GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
             });

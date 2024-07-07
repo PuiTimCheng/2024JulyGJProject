@@ -9,6 +9,11 @@ public class PlayTimerUI : MonoBehaviour
     public TextMeshProUGUI timeText;
     public Slider slider;
     public RectTransform fireRect;
+
+    public void StopFire()
+    {
+        fireRect.gameObject.SetActive(false);
+    }
     public void UpdateTime(float timeInSecond)
     {
         //convert timeInSecond to display in a format of mm:ss

@@ -97,27 +97,27 @@ public class GameManager : PersistentSingleton<GameManager>
         switch (food)
         {
             case FoodName.RiceAndBeef:
-                return 500;
+                return 1200;
             case FoodName.RiceAndEgg:
-                return 500;
+                return 1000;
             case FoodName.ShrimpAndBiscuit:
-                return 500;
+                return 1100;
             case FoodName.WatermelonAndRice:
                 return 500;
             case FoodName.EggAndBiscuit:
-                return 500;
+                return 1000;
             case FoodName.SausageAndBread:
-                return 500;
+                return 900;
             case FoodName.ShrimpAndNoodle:
-                return 500;
+                return 1100;
             case FoodName.BeefAndBread:
-                return 500;
+                return 1100;
             case FoodName.TomatoAndFish:
-                return 500;
+                return 800;
             case FoodName.BreadAndChicken:
-                return 500;
+                return 900;
             case FoodName.ChickenAndBiscuit:
-                return 500;
+                return 1100;
             default:
                 return GameManager.Instance.FoodNameToConfigs[food].foodScore;
         }
