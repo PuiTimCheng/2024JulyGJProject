@@ -10,6 +10,8 @@ namespace UI
         public Button startBtn;
         public Button rankingBtn;
         public Button creditsBtn;
+        
+        public CreditUI creditUI;
 
         public float punchStrength;
         public bool clicked;
@@ -44,6 +46,7 @@ namespace UI
         {
             //show credits ui here
             Debug.Log("credits");
+            creditUI.Show();
         }
     }
 }
