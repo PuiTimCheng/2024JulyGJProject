@@ -26,19 +26,43 @@ MonoBehaviour:
       Data: 0|CellsInfo`1[[System.Boolean, mscorlib]], Assembly-CSharp
     - Name: Width
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: Height
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: Cells
       Entry: 7
       Data: 1|System.Boolean[,], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 9
     - Name: ranks
       Entry: 1
-      Data: 1|1
+      Data: 3|3
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 5
       Data: true
@@ -57,10 +81,4 @@ MonoBehaviour:
   plateSprite: {fileID: 21300000, guid: 4bc54edf4657c9240ab54cc4285e424a, type: 3}
   Phase0Time: 0
   Phase1Time: 0
-  foodFormulas:
-  - combineFood: 10
-    finalFood: 18
-    finalFoodSprite: {fileID: 21300000, guid: 451d1ec22401ecb4c9f152cb448db364, type: 3}
-  - combineFood: 5
-    finalFood: 26
-    finalFoodSprite: {fileID: 21300000, guid: b65411f49ad9dc34ab3b973389c7b9eb, type: 3}
+  foodFormulas: []
