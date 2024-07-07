@@ -101,7 +101,15 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     public void SaveScore(string playerName)
     {
         var dict = GameManager.Instance.LoadScore();
-        dict.Add(playerName, PlayData.Score);
+        if (dict.ContainsKey(playerName))
+        {
+            var value = PlayData.Score > dict[playerName]? PlayData.Score : dict[playerName];
+            dict[playerName] = value;
+        }
+        else
+        {
+            dict.Add(playerName, PlayData.Score);
+        }
         GameManager.Instance.SaveScore(dict);
         Debug.Log($"Score Saved {playerName}:{PlayData.Score}");
     }

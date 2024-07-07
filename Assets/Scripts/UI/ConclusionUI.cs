@@ -39,7 +39,17 @@ namespace UI.GameCanvasUIManager
 
             RebuildRectTransforms = contentRectTransform.transform.GetComponentsInChildren<RectTransform>();
         }
-        
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                SpeedUpSequenceOnClick();
+            }
+        }
+
+        private Sequence sequence;
+        private bool canSpeedUP;
         public void ShowWithPlayDataResult(PlayData data)
         {
             resultEntriesRoot.DestroyChildren();
@@ -57,7 +67,7 @@ namespace UI.GameCanvasUIManager
             AudioManager.Instance.PlaySFX(SFXType.R_Start);
             
             // Create a DOTween sequence
-            Sequence sequence = DOTween.Sequence();
+            sequence = DOTween.Sequence();
             // Step 1: Show result entries one by one
             var allFoodNames = data.EatenFood.Keys.ToList();
             sequence.AppendInterval(1f);
@@ -71,6 +81,7 @@ namespace UI.GameCanvasUIManager
                 rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, 0); // Start with scale zero
                 rectTrans.localScale = Vector3.zero; // Start with scale zero
                 
+                sequence.AppendCallback(() => { canSpeedUP = true; });
                 sequence.AppendCallback(() => { RebuildLayout(); });
                 sequence.AppendCallback(() => AudioManager.Instance.PlaySFX(SFXType.R_Print));
                 sequence.AppendCallback(() => rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, 100));
@@ -96,10 +107,13 @@ namespace UI.GameCanvasUIManager
             sequence.AppendCallback(() => totalScoreText.text = data.Score.ToString());
             sequence.Append(totalScoreText.DOFade(1, 0.3f)); // Fade in the total score text
             sequence.AppendInterval(1f);
+            sequence.AppendCallback(() => { canSpeedUP = false; });
+            sequence.AppendCallback(() => { sequence = null; });
+            
             // Start the sequence
             sequence.Play();
         }
-
+        
         public void HandleSaveScore(string name)
         {
             Debug.Log($"HandleSaveScore {name}");
@@ -107,7 +121,7 @@ namespace UI.GameCanvasUIManager
             //Show effect 
             redLineImage.fillAmount = 0;
             YellowRectTransform.localScale = Vector3.zero;
-            Sequence sequence = DOTween.Sequence();
+            var sequence = DOTween.Sequence();
             
             sequence.AppendCallback(() => 
                 AudioManager.Instance.PlaySFX(SFXType.R_End));
@@ -118,10 +132,22 @@ namespace UI.GameCanvasUIManager
             sequence.AppendCallback(() => YellowRectTransform.gameObject.SetActive(true));
             sequence.Append(YellowRectTransform.DOScale(1, 0.5f)); 
             sequence.Append(YellowRectTransform.DOPunchScale(Vector3.one * 0.1f, 0.3f));
+            
+            sequence.AppendCallback(() => GameManager.Instance.ShowRanking());
             sequence.Play();
             
             PlaySceneController.Instance.SaveScore(name);
         }
+        
+        public void SpeedUpSequenceOnClick()
+        {
+            if (sequence != null && sequence.IsPlaying() && canSpeedUP)
+            {
+                sequence.timeScale = 10.0f; // Double the speed of the sequence
+            }
+        }
+        
+        
         public void RebuildLayout()
         {
             var count = RebuildRectTransforms.Length;
