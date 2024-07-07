@@ -37,6 +37,7 @@ public class FoodConveyor : MonoBehaviour
         _spawnTimer = new CountdownTimer(spawnFoodInterval/ conveyorSpeed);
     }
 
+    public void Stop() => _conveyorStarted = false;
     public void Update()
     {
         if (!_conveyorStarted) return;
