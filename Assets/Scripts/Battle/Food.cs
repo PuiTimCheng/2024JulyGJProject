@@ -60,6 +60,15 @@ namespace Battle
             _fromPlate = transform.parent.GetComponent<Plate>();
         }
 
+        public void UpgradeFood(FoodName name, Sprite sprite)
+        {
+            _data.foodName = name;
+            _img.sprite = sprite;
+            HideSelectEffect();
+            StopAllCoroutines();
+            StartDigest();
+        }
+
         public void StartDigest()
         {
             Debug.Log($"Start Disgest ");
@@ -106,6 +115,13 @@ namespace Battle
         public void OnDigest()
         {
             _digesting = false;
+            
+            // 清除可能正在运行的 Tween 动画
+            HideSelectEffect();
+
+            // 停止消化的协程
+            StopAllCoroutines();
+            
             GameCanvasUIManager.Instance.iconAnimation.StartIconAnimation(10, transform.position);
             PlaySceneController.Instance.AddScore(GameManager.GetFoodScore(_data.foodName));
             PlaySceneController.Instance.AddEatenDish(_data.foodName);

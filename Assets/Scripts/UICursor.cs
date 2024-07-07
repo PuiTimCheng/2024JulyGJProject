@@ -10,7 +10,7 @@ public class UICursor : MonoBehaviour
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
+        _image = transform.Find("Img").GetComponent<Image>();
         _uiCursor = GetComponent<RectTransform>();
         _image.sprite = releaseCursor;
 
