@@ -9,7 +9,7 @@ namespace UI
     public class StartAndEndText : MonoBehaviour
     {
         [Button]
-        public void ShowTea(string str)
+        public void ShowText(string str)
         {
             GetComponent<TMP_Text>().text = str;
             var rect = GetComponent<RectTransform>();
