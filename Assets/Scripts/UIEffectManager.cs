@@ -89,12 +89,45 @@ public class UIEffectManager : MonoBehaviour
                 return "三明治";
             case FoodName.ChickenAndBiscuit:
                 return "饺子";
+            case FoodName.Beef:
+                return "牛肉";
+            case FoodName.Biscuit:
+                return "压缩饼干";
+            case FoodName.Bread:
+                return "面包";
+            case FoodName.Broccoli:
+                return "西兰花";
+            case FoodName.Cake:
+                return "蛋糕";
+            case FoodName.Chicken:
+                return "鸡肉";
+            case FoodName.Egg:
+                return "蛋";
+            case FoodName.Fish:
+                return "鱼";
+            case FoodName.Mushroom:
+                return "蘑菇";
+            case FoodName.Noodle:
+                return "面条";
+            case FoodName.Prawn:
+                return "虾";
+            case FoodName.Rice:
+                return "米饭";
+            case FoodName.Stone:
+                return "石头";
+            case FoodName.Tomato:
+                return "番茄";
+            case FoodName.WatermelonSlice:
+                return "西瓜";
+            case FoodName.Sausage:
+                return "香肠";
             case FoodName.PrawnAndNoddle:
                 return "鲜虾面";
             case FoodName.PrawnAndPhone:
                 return "不是哥们";
             case FoodName.StoneAndLimb:
                 return "呀哈哈";
+            
             default:
                 return food.ToString();
         }

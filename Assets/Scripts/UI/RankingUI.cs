@@ -61,6 +61,7 @@ public class RankingUI : MonoBehaviour, IUIPanel
     {
         root.gameObject.SetActive(true);
         SetRankFromSave();
+        AudioManager.Instance.PlaySFX(SFXType.leaderBoard);
     }
 
     public void Hide()
