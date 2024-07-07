@@ -16,6 +16,9 @@ namespace UI.GameCanvasUIManager
         public Trash trash;
         public StartAndEndText StartAndEndText;
 
+        public Sprite prawn2;
+        public Sprite phone2;
+
         public void ShowInstruction()
         {
             instructionUI.Show();

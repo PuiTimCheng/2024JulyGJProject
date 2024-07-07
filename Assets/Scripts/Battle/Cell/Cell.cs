@@ -85,6 +85,24 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (CellState != CellState.Occupied || food == null)
             return false;
+        
+        if (food.foodName == FoodName.Phone)
+        {
+            Vector2Int rightPosition = new Vector2Int(Index.x + 1, Index.y);
+            if (StomachManager.Instance.Cells.IsValidPosition(rightPosition))
+            {
+                var rightCell = StomachManager.Instance.Cells.GetItem(rightPosition);
+                if (rightCell != null && rightCell.CellState == CellState.Occupied &&
+                    rightCell.food != null && rightCell.food.foodName == FoodName.Prawn)
+                {
+                    // 更新Sprite，不销毁Cell
+                    food._img.sprite = GameCanvasUIManager.Instance.phone2;
+                    rightCell.food._img.sprite = GameCanvasUIManager.Instance.prawn2;// 同上
+                    GameCanvasUIManager.Instance.uIEffectManager.Burst(food.transform.localPosition, FoodName.PrawnAndPhone);
+                    return true;
+                }
+            }
+        }
 
         List<Vector2Int> neighborsPositions = new List<Vector2Int>
         {
@@ -109,8 +127,6 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
                 {
                     StomachManager.Instance.Cells.DestroyCellByType(formula.combineFood);
                     food.UpgradeFood(formula.finalFood, formula.finalFoodSprite);
-                    // food._img.sprite = formula.finalFoodSprite;
-                    // food._data.foodName = formula.finalFood;
                     GameCanvasUIManager.Instance.tea.AddEnergy();
                     GameCanvasUIManager.Instance.uIEffectManager.Burst(food.transform.localPosition, formula.finalFood);
                     AudioManager.Instance.PlaySFX(SFXType.Merge);

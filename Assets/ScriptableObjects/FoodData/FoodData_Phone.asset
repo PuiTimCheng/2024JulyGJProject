@@ -60,7 +60,4 @@ MonoBehaviour:
   plateSprite: {fileID: 21300000, guid: 4bc54edf4657c9240ab54cc4285e424a, type: 3}
   Phase0Time: 0
   Phase1Time: 0
-  foodFormulas:
-  - combineFood: 10
-    finalFood: 28
-    finalFoodSprite: {fileID: 21300000, guid: 62be00aecac16eb418c83e2ba7b64959, type: 3}
+  foodFormulas: []
