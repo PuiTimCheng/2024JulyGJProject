@@ -14,6 +14,7 @@ namespace UI.GameCanvasUIManager
         public IconAnimation iconAnimation;
         public Tea tea;
         public Trash trash;
+        public StartAndEndText StartAndEndText;
 
         public void ShowInstruction()
         {
