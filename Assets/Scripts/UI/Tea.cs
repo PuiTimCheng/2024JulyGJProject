@@ -54,12 +54,12 @@ namespace UI
             
             UseTeaUI.gameObject.SetActive(true);
             DOTween.Sequence()
-                .Append(UseTeaUI.DOAnchorPosX(0, 0.3f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移入
+                .Append(UseTeaUI.DOAnchorPosX(-573, 0.3f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移入
                 .AppendInterval(0.4f)  // 中间停留0.4秒
-                .Append(UseTeaUI.DOAnchorPosX(1960, 0.3f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移出
+                .Append(UseTeaUI.DOAnchorPosX(1580, 0.3f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移出
                 .OnComplete(() => {
                     UseTeaUI.gameObject.SetActive(false);
-                    UseTeaUI.anchoredPosition = new Vector3(-1960, 0, 0); // 确保重新定位到起始位置
+                    UseTeaUI.anchoredPosition = new Vector3(-2600, 366, 0); // 确保重新定位到起始位置
                     StomachManager.Instance.Cells.DestroyAllFood(); // 调用适当的清理方法
                 })
                 .Play();
