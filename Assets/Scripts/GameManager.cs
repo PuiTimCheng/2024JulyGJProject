@@ -70,6 +70,7 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public void LoadComicScene()
     {
+        AudioManager.Instance.PlayBGM(BGMType.Intro);
         loadComicScenePlayer.Initialization();
         loadComicScenePlayer.PlayFeedbacks();
     }

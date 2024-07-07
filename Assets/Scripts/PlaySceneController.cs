@@ -108,7 +108,6 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             _clicked = false;
             GameCanvasUIManager.Instance.ShowInstruction();
-            AudioManager.Instance.PlayBGM(BGMType.Intro);
         }
 
         public void OnUpdateState()
@@ -166,7 +165,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnExitState()
         {
-            AudioManager.Instance.FadeOutAmbience();
+            AudioManager.Instance.PauseBGM();
         }
 
         public bool IsTimesUp()
@@ -189,7 +188,6 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
             {
                 GameCanvasUIManager.Instance.conclusionUI.Show();
                 GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
-                AudioManager.Instance.PlaySFX(SFXType.Receipt);
             });
         }
 
@@ -199,6 +197,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnExitState()
         {
+            AudioManager.Instance.FadeOutAmbience();
         }
     }
 }
