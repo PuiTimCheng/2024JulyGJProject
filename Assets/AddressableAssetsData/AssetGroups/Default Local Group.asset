@@ -112,6 +112,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0facfc1aa1b8a444c92a1932148eaec4
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Phone.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abf63441dcda74948be7178064009306
+    m_Address: Assets/ScriptableObjects/FoodData/FoodData_Limb.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f47653868397c9042b135840c82114fb, type: 2}
   m_SchemaSet:
