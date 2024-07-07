@@ -79,7 +79,12 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         PlayData.mergedFoodCount += 13;
         PlayData.EatenFood = new Dictionary<FoodName, int>()
         {
+            { FoodName.Biscuit , 10},
             { FoodName.Bread , 10},
+            { FoodName.Cake , 10},
+            { FoodName.Chicken , 10},
+            { FoodName.Fish , 10},
+            { FoodName.Mushroom , 10},
             { FoodName.Beef , 10},
             { FoodName.Egg , 10},
             { FoodName.ChickenAndBiscuit , 10},

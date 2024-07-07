@@ -48,6 +48,8 @@ namespace UI.GameCanvasUIManager
             YellowRectTransform.gameObject.SetActive(false);
             RebuildLayout();
             
+            contentRectTransform.anchoredPosition = contentRectTransform.anchoredPosition.Set(y: -1200);
+            
             mergedTimesText.text = "";
             totalScoreText.text = "";
             
@@ -63,14 +65,17 @@ namespace UI.GameCanvasUIManager
             foreach (var foodName in allFoodNames)
             {
                 var resultEntry = Instantiate(resultEntryPrefab, resultEntriesRoot).GetComponent<ResultEntryUI>();
-                resultEntry.SetText(foodName.ToString(), data.EatenFood[foodName].ToString(),
+                resultEntry.SetText(UIEffectManager.GetFoodLabel(foodName), data.EatenFood[foodName].ToString(),
                     (GameManager.GetFoodScore(foodName) * data.EatenFood[foodName]).ToString());
-
-                resultEntry.transform.localScale = Vector3.zero; // Start with scale zero
+                var rectTrans = resultEntry.GetComponent<RectTransform>();
+                rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, 0); // Start with scale zero
+                rectTrans.localScale = Vector3.zero; // Start with scale zero
+                
                 sequence.AppendCallback(() => { RebuildLayout(); });
-                //sequence.AppendCallback(() => { AddHeight(100); });
                 sequence.AppendCallback(() => AudioManager.Instance.PlaySFX(SFXType.R_Print));
-                sequence.Append(resultEntry.transform.DOScale(Vector3.one, 0.3f)); // Scale to one over 0.3 seconds
+                sequence.AppendCallback(() => rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, 100));
+                sequence.AppendCallback(() => rectTrans.localScale = Vector3.one);
+                //sequence.Append(rectTrans.DOScale(Vector3.one, 0.3f)); // Scale to one over 0.3 seconds
                 sequence.AppendInterval(0.3f);
             }
 
@@ -129,7 +134,7 @@ namespace UI.GameCanvasUIManager
         public void Show()
         {
             gameObject.SetActive(true);
-            contentRectTransform.anchoredPosition = contentRectTransform.anchoredPosition.Set(y: -500);
+            //contentRectTransform.anchoredPosition = contentRectTransform.anchoredPosition.Set(y: -500);
         }
 
         public void Hide()

@@ -51,6 +51,11 @@ public class ComicManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.LoadPlayScene();
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Next();
@@ -65,7 +70,11 @@ public class ComicManager : MonoBehaviour
             if (pageDone[currentPageNum])
             {
                 currentPageNum++;
-                if (currentPageNum >= Pages.Count) GameManager.Instance.LoadPlayScene();
+                if (currentPageNum >= Pages.Count)
+                {
+                    GameManager.Instance.LoadPlayScene();
+                    return;
+                }
                 else Pages[currentPageNum].gameObject.SetActive(true);
             }
             switch (currentPageNum)
