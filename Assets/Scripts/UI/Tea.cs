@@ -1,4 +1,5 @@
 using System;
+using Battle;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -57,6 +58,7 @@ namespace UI
                 .Append(text.transform.DOScale(1f, 0.2f).SetUpdate(true))
                 .OnComplete(() => {
                     UseTeaUI.SetActive(false);
+                    StomachManager.Instance.Cells.DestroyAllFood();
                 })
                 .Play();
         }

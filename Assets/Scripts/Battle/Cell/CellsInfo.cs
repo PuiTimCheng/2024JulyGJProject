@@ -78,6 +78,22 @@ public class CellsInfo<T>
         }
     }
     
+    public void DestroyAllFood()
+    {
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                Cell cell = Cells[x, y] as Cell; 
+                if (cell != null && cell.food != null)
+                {
+                    cell.SetCellState(CellState.Empty); 
+                    cell.food.OnDigest();
+                }
+            }
+        }
+    }
+    
     public void CheckCombine()
     {
         for (int x = 0; x < Width; x++)
