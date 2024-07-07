@@ -39,22 +39,15 @@ namespace UI.GameCanvasUIManager
 
             RebuildRectTransforms = contentRectTransform.transform.GetComponentsInChildren<RectTransform>();
         }
-
-        private void Update()
-        {
-            var curPos = contentRectTransform.anchoredPosition;
-            var newPos = Mathf.Lerp(ScrollRect.normalizedPosition.y, 0, 0.6f);
-            ScrollRect.normalizedPosition = ScrollRect.normalizedPosition.Set(y: 0);
-            /*if(contentRectTransform.anchoredPosition.y >= 0.1f)
-                contentRectTransform.anchoredPosition = contentRectTransform.anchoredPosition.Set(y: newPos);*/
-        }
-
+        
         public void ShowWithPlayDataResult(PlayData data)
         {
             resultEntriesRoot.DestroyChildren();
             scriptEndRectTrans.gameObject.SetActive(false);
             redLineImage.gameObject.SetActive(false);
             YellowRectTransform.gameObject.SetActive(false);
+            RebuildLayout();
+            
             mergedTimesText.text = "";
             totalScoreText.text = "";
             
@@ -123,12 +116,6 @@ namespace UI.GameCanvasUIManager
             sequence.Play();
             
             PlaySceneController.Instance.SaveScore(name);
-        }
-        
-        public void AddHeight(float height)
-        {
-            contentRectTransform.SetSize(new Vector2(contentRectTransform.sizeDelta.x , contentRectTransform.sizeDelta.y + height));
-            LayoutRebuilder.ForceRebuildLayoutImmediate(contentRectTransform);
         }
         public void RebuildLayout()
         {

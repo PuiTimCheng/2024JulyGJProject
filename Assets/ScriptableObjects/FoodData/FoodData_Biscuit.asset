@@ -26,43 +26,19 @@ MonoBehaviour:
       Data: 0|CellsInfo`1[[System.Boolean, mscorlib]], Assembly-CSharp
     - Name: Width
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: Height
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: Cells
       Entry: 7
       Data: 1|System.Boolean[,], mscorlib
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 1
     - Name: ranks
       Entry: 1
-      Data: 3|3
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 5
-      Data: true
+      Data: 1|1
     - Name: 
       Entry: 5
       Data: true
