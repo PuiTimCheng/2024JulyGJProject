@@ -57,7 +57,13 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     public void AddEatenDish(FoodName foodName)
     {
         var oldValue = PlayData.EatenFood.GetValueOrDefault(foodName, 0);
-        PlayData.EatenFood.TryAdd(foodName, oldValue + 1);
+        if (oldValue == 0) PlayData.EatenFood.Add(foodName, 1);
+        else PlayData.EatenFood[foodName] = oldValue + 1;
+        Debug.Log($"Add dish {foodName} {oldValue} => {PlayData.EatenFood[foodName]}");
+    }
+    public void AddMergeCount()
+    {
+        PlayData.mergedFoodCount += 1;
     }
     
     public void PauseAndUnPause()
@@ -65,6 +71,21 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }
     
+    [Button]
+    public void FakeData()
+    {
+        PlayData.Score += 865;
+        PlayData.mergedFoodCount += 13;
+        PlayData.EatenFood = new Dictionary<FoodName, int>()
+        {
+            { FoodName.Bread , 10},
+            { FoodName.Beef , 10},
+            { FoodName.Egg , 10},
+            { FoodName.ChickenAndBiscuit , 10},
+            { FoodName.ShrimpAndBiscuit , 10},
+            { FoodName.Broccoli , 10},
+        };
+    }
     [Button]
     public void EndGameNow()
     {
@@ -142,7 +163,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         public void OnEnterState()
         {
             GameCanvasUIManager.Instance.conclusionUI.Show();
-            GameCanvasUIManager.Instance.conclusionUI.InitWithPlayDataResult(Instance.PlayData);
+            GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
         }
 
         public void OnUpdateState()

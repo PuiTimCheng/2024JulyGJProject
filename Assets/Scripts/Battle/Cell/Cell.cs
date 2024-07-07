@@ -111,6 +111,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
                     food._data.foodName = formula.finalFood;
                     GameCanvasUIManager.Instance.tea.AddEnergy();
                     GameCanvasUIManager.Instance.uIEffectManager.Burst(food.transform.localPosition, formula.finalFood);
+                    PlaySceneController.Instance.AddMergeCount();
                     return true;
                 }
             }
