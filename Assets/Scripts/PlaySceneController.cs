@@ -186,6 +186,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
             
             DOVirtual.DelayedCall(2, () =>
             {
+                GameCanvasUIManager.Instance.playTimerUI.StopFire();
                 GameCanvasUIManager.Instance.conclusionUI.Show();
                 GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
             });
