@@ -19,6 +19,7 @@ namespace Battle
         private Sequence _selectEffectSequence;
         
         public FoodData _data;
+        public FoodName foodName;
         float _curTime;
         int _curPhase;
         bool _digesting;
@@ -57,12 +58,13 @@ namespace Battle
             _data = data;
             _img.sprite = data.stage1;
             _img.SetNativeSize();
+            foodName = data.foodName;
             _fromPlate = transform.parent.GetComponent<Plate>();
         }
 
         public void UpgradeFood(FoodName name, Sprite sprite)
         {
-            _data.foodName = name;
+            foodName = name;
             _img.sprite = sprite;
             HideSelectEffect();
             StopAllCoroutines();
