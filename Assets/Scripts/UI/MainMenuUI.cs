@@ -11,7 +11,7 @@ namespace UI
 
         private void Start()
         {
-            startBtn.onClick.AddListener(GameManager.Instance.LoadPlayScene);
+            startBtn.onClick.AddListener(GameManager.Instance.LoadComicScene);
             rankingBtn.onClick.AddListener(GameManager.Instance.ShowRanking);
             creditsBtn.onClick.AddListener(ShowCredits);
         }

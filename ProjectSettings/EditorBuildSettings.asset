@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: a2fd861dd301aff46a1e0eb19ae3dbcc
+  - enabled: 1
+    path: Assets/Scenes/Comic.unity
+    guid: af3abf34a556e5b409f46efea1adbd47
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 506e267ec1fabd7479628f2f8bdb8692, type: 2}
