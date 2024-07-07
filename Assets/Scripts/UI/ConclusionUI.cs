@@ -50,10 +50,14 @@ namespace UI.GameCanvasUIManager
             mergedTimesText.text = "";
             totalScoreText.text = "";
             
+            AudioManager.Instance.PlaySFX(SFXType.R_Start);
+            
             // Create a DOTween sequence
             Sequence sequence = DOTween.Sequence();
             // Step 1: Show result entries one by one
             var allFoodNames = data.EatenFood.Keys.ToList();
+            sequence.AppendInterval(1f);
+
             foreach (var foodName in allFoodNames)
             {
                 var resultEntry = Instantiate(resultEntryPrefab, resultEntriesRoot).GetComponent<ResultEntryUI>();
@@ -61,6 +65,7 @@ namespace UI.GameCanvasUIManager
                     (GameManager.GetFoodScore(foodName) * data.EatenFood[foodName]).ToString());
 
                 resultEntry.transform.localScale = Vector3.zero; // Start with scale zero
+                sequence.AppendCallback(() => AudioManager.Instance.PlaySFX(SFXType.R_Print));
                 sequence.Append(resultEntry.transform.DOScale(Vector3.one, 0.3f)); // Scale to one over 0.3 seconds
                 sequence.AppendCallback(()=>{ LayoutRebuilder.ForceRebuildLayoutImmediate(contentRectTransform); });
                 sequence.AppendCallback(()=>{ LayoutRebuilder.ForceRebuildLayoutImmediate(resultEntriesRoot); });
@@ -79,15 +84,20 @@ namespace UI.GameCanvasUIManager
             sequence.AppendInterval(0.5f);
             
             // Step 3: Show merged count
+            sequence.AppendCallback(() => AudioManager.Instance.PlaySFX(SFXType.R_Print));
             sequence.AppendCallback(() => mergedTimesText.text = data.mergedFoodCount.ToString());
             sequence.Append(mergedTimesText.DOFade(1, 0.3f)); // Fade in the merged count text
             sequence.AppendInterval(0.5f);
             // Step 4: Show total score
+            sequence.AppendCallback(() => AudioManager.Instance.PlaySFX(SFXType.R_Print));
             sequence.AppendCallback(() => totalScoreText.text = data.Score.ToString());
             sequence.Append(totalScoreText.DOFade(1, 0.3f)); // Fade in the total score text
             sequence.AppendInterval(1f);
             // Step 4: Show effect 
-            sequence.AppendCallback(() => spawnEffectRectTrans.gameObject.SetActive(true));
+            sequence.AppendCallback(() => 
+                AudioManager.Instance.PlaySFX(SFXType.R_End));
+            sequence.AppendCallback(() => 
+                spawnEffectRectTrans.gameObject.SetActive(true));
             sequence.Append(spawnEffectRectTrans.DOScale(1, 0.3f)); // Fade in the total score text
             // Start the sequence
             sequence.Play();

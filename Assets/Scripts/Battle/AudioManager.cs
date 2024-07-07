@@ -25,7 +25,10 @@ public enum SFXType
     Tea,
     Start,
     Receipt,
-    Trash
+    Trash,
+    R_Start,
+    R_Print,
+    R_End
 }
 
 public class AudioManager : SerializedMonoBehaviour
@@ -88,6 +91,22 @@ public class AudioManager : SerializedMonoBehaviour
         }
         
         _bgmFadeCoroutine = StartCoroutine(FadeInOut(clip));
+    }
+
+    public void PauseBGM()
+    {
+        if (_currentSource.isPlaying)
+        {
+            _currentSource.Pause();
+        }
+    }
+
+    public void ResumeBGM()
+    {
+        if (!_currentSource.isPlaying)
+        {
+            _currentSource.Play();
+        }
     }
     
 
