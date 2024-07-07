@@ -140,7 +140,6 @@ namespace Battle
                     StomachManager.Instance.SetCellState(eligibleCells
                         .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList(), _curDraggingFood);
                     _curDraggingFood = null;
-                    
                     AudioManager.Instance.PlaySFX(SFXType.Place);
 
                 }
