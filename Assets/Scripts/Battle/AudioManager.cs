@@ -114,7 +114,6 @@ public class AudioManager : SerializedMonoBehaviour
     {
         if (_sfxDic.TryGetValue(sfx, out var clip))
         {
-            Debug.Log($"Play SFX {sfx.ToString()}");
             _sfxSource.PlayOneShot(clip);
         }
     }
@@ -162,6 +161,8 @@ public class AudioManager : SerializedMonoBehaviour
 
     IEnumerator FadeInAmbienceCoroutine(AudioClip clip)
     {
+        Debug.Log("Fade in Amb");
+
         _ambSource.clip = clip;
         _ambSource.Play();
 
@@ -179,6 +180,7 @@ public class AudioManager : SerializedMonoBehaviour
 
     IEnumerator FadeOutAmbienceCoroutine()
     {
+        Debug.Log("Fade Out Amb");
         float timer = 0f;
 
         float initValue = _ambSource.volume;
