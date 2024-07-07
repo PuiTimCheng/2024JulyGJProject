@@ -18,6 +18,7 @@ namespace UI
         
         private void Start()
         {
+            Cursor.visible = true;
             startBtn.onClick.AddListener(() =>
             {
                 AudioManager.Instance.PlaySFX(SFXType.Start);

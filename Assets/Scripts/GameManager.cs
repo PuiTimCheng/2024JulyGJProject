@@ -5,6 +5,7 @@ using MoreMountains.Feedbacks;
 using TimToolBox.Extensions;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 
 public class GameManager : PersistentSingleton<GameManager>
 {
@@ -29,6 +30,8 @@ public class GameManager : PersistentSingleton<GameManager>
             var path = $"Assets/ScriptableObjects/FoodData/FoodData_{foodName}.asset";
             CheckAndLoadFoodData(path, foodName);
         }
+
+        Keyboard.current.SetIMEEnabled(true);
         
         //load saved ranking data
         LoadScore();
@@ -90,7 +93,21 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         
     }
-    
+
+    public static List<FoodName> Level2Foods = new List<FoodName>()
+    {
+        FoodName.RiceAndBeef, //咖喱饭
+        FoodName.RiceAndEgg, //蛋炒饭
+        FoodName.ShrimpAndBiscuit, //虾饺
+        FoodName.WatermelonAndRice, //西瓜拌饭
+        FoodName.EggAndBiscuit, //蛋饺
+        FoodName.SausageAndBread,
+        FoodName.ShrimpAndNoodle,
+        FoodName.BeefAndBread,
+        FoodName.TomatoAndFish,
+        FoodName.BreadAndChicken,
+        FoodName.ChickenAndBiscuit,
+    };
     
     public static int GetFoodScore(FoodName food)
     {
@@ -103,7 +120,7 @@ public class GameManager : PersistentSingleton<GameManager>
             case FoodName.ShrimpAndBiscuit:
                 return 1100;
             case FoodName.WatermelonAndRice:
-                return 500;
+                return 1100;
             case FoodName.EggAndBiscuit:
                 return 1000;
             case FoodName.SausageAndBread:

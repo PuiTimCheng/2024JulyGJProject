@@ -5250,6 +5250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseBtn: {fileID: 4736795467561743854}
   RestartBtn: {fileID: 386379738768207087}
+  SettingBtn: {fileID: 7805664399066923401}
 --- !u!222 &5135252371053525278
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5432,7 +5433,7 @@ MonoBehaviour:
   conveyorRawImage: {fileID: 1158089708715221367}
   randomSeed: 0
   conveyorSpeed: 0.35
-  uvRectSpeedMultiplier: 0.5
+  uvRectSpeedMultiplier: 0.38
   foodSpeedMultiplier: 480
   spawnFoodInterval: 0.5
 --- !u!1 &2059712688685591878

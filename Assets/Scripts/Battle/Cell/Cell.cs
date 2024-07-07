@@ -100,6 +100,8 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
             var neighborCell = StomachManager.Instance.Cells.GetItem(pos);
             if (neighborCell == null || neighborCell.CellState != CellState.Occupied ||
                 neighborCell.food == null) continue;
+            if (GameManager.Level2Foods.Contains(neighborCell.food.foodName) || 
+                GameManager.Level2Foods.Contains(food.foodName)) continue;
             
             foreach (var formula in food._data.foodFormulas)
             {
