@@ -1,6 +1,7 @@
 using Battle;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 
 namespace UI
@@ -8,8 +9,9 @@ namespace UI
     public class StartAndEndText : MonoBehaviour
     {
         [Button]
-        public void ShowTea()
+        public void ShowTea(string str)
         {
+            GetComponent<TMP_Text>().text = str;
             var rect = GetComponent<RectTransform>();
             DOTween.Sequence()
                 .Append(rect.DOAnchorPosX(0, 0.5f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移入

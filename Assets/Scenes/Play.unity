@@ -2686,6 +2686,7 @@ MonoBehaviour:
   iconAnimation: {fileID: 867567029}
   tea: {fileID: 931711506}
   trash: {fileID: 1714407005}
+  StartAndEndText: {fileID: 0}
 --- !u!1 &2042480521
 GameObject:
   m_ObjectHideFlags: 0
