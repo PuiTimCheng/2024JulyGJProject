@@ -17,7 +17,7 @@ namespace UI
         public GameObject effect;
         public GameObject space;
 
-        public GameObject UseTeaUI;
+        public RectTransform UseTeaUI;
 
         private void Update()
         {
@@ -48,17 +48,19 @@ namespace UI
         public void UseTea()
         {
             float targetFillAmount = 0;
-            fillImage.DOFillAmount(targetFillAmount, 0.2f); // 在0.2秒内改变fillAmount
+            fillImage.DOFillAmount(targetFillAmount, 0.2f).SetUpdate(true); // 在0.2秒内改变fillAmount，确保在时停时也更新
             effect.SetActive(false);
             space.SetActive(false);
             
-            UseTeaUI.SetActive(true);
+            UseTeaUI.gameObject.SetActive(true);
             DOTween.Sequence()
-                .Append(UseTeaUI.transform.DOScale(1.5f, 0.3f).SetUpdate(true)) // 即使在Time.timeScale = 0时也更新
-                .Append(text.transform.DOScale(1f, 0.2f).SetUpdate(true))
+                .Append(UseTeaUI.DOAnchorPosX(0, 0.3f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移入
+                .AppendInterval(0.4f)  // 中间停留0.4秒
+                .Append(UseTeaUI.DOAnchorPosX(1960, 0.3f).SetUpdate(true).SetEase(Ease.InOutQuad)) // 添加渐变效果，平滑地移出
                 .OnComplete(() => {
-                    UseTeaUI.SetActive(false);
-                    StomachManager.Instance.Cells.DestroyAllFood();
+                    UseTeaUI.gameObject.SetActive(false);
+                    UseTeaUI.anchoredPosition = new Vector3(-1960, 0, 0); // 确保重新定位到起始位置
+                    StomachManager.Instance.Cells.DestroyAllFood(); // 调用适当的清理方法
                 })
                 .Play();
         }
