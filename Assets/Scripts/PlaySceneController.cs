@@ -144,16 +144,19 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     public class PlayState : IState
     {
         private CountdownTimer _playtimer;
+        private CountdownTimer _trashTalkTimer;
+        
         private bool startedGame;
         
         public PlayState()
         {
             _playtimer = new CountdownTimer(1);
-
+            _trashTalkTimer = new CountdownTimer(7);
         }
         public void OnEnterState()
         {
             startedGame = false;
+            _trashTalkTimer.Start();
             
             GameCanvasUIManager.Instance.ShowGamePlayUI();
             Instance.PlayData = new PlayData(); //reset all game data
@@ -175,6 +178,11 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnUpdateState()
         {
+            if (_trashTalkTimer.IsFinished)
+            {
+                GameCanvasUIManager.Instance.talkUI.StartDialogue();
+                _trashTalkTimer.Start();
+            }
             GameCanvasUIManager.Instance.playTimerUI.UpdateTimeRatio(_playtimer.Progress);
         }
 

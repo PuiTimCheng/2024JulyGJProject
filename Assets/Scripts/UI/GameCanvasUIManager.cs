@@ -19,6 +19,8 @@ namespace UI.GameCanvasUIManager
         public Sprite prawn2;
         public Sprite phone2;
 
+        public TalkUI talkUI;
+
         public void ShowInstruction()
         {
             instructionUI.Show();

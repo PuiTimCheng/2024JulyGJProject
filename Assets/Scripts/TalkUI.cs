@@ -25,20 +25,21 @@ public class TalkUI : MonoBehaviour
     [Button]
     public void StartDialogue()
     {
+        text.text = "";
         textTransform.localScale = Vector3.zero; // 初始时隐藏
         textTransform.DOScale(1, 0.5f) // DoTween动画，缩放至正常大小
-            .OnComplete(() => StartCoroutine(GetRandomSentence()));
+            .OnComplete(() => StartCoroutine(TypeText(GetRandomSentence())));
     }
 
     private IEnumerator TypeText(string str)
     {
-        text.text = "";
         foreach (char c in str)
         {
             text.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
         // 打字结束后缩回
+        yield return new WaitForSeconds(2);
         textTransform.DOScale(0, 0.5f);
     }
 
