@@ -123,9 +123,20 @@ namespace Battle
 
             // 停止消化的协程
             StopAllCoroutines();
+
+            int score = 0;
+
+            foreach (var cell in Orientation.Cells)
+            {
+                score += cell ? 100 : 0;
+            }
+
             
             GameCanvasUIManager.Instance.iconAnimation.StartIconAnimation(10, transform.position);
-            PlaySceneController.Instance.AddScore(GameManager.GetFoodScore(_data.foodName));
+            
+            FloatScoreManager.Instance.PlayScore(transform.position, score, true);
+            PlaySceneController.Instance.AddScore(score);
+            
             PlaySceneController.Instance.AddEatenDish(_data.foodName);
             StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
             AudioManager.Instance.PlaySFX(SFXType.Digest);
