@@ -114,4 +114,5 @@ public class GameManager : PersistentSingleton<GameManager>
                 return GameManager.Instance.FoodNameToConfigs[food].foodScore;
         }
     }
+
 }

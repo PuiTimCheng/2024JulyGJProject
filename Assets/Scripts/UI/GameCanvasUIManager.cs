@@ -26,6 +26,5 @@ namespace UI.GameCanvasUIManager
             instructionUI.Hide();
             conclusionUI.Hide();
         }
-        
     }
 }

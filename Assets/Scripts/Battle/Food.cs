@@ -110,7 +110,8 @@ namespace Battle
             PlaySceneController.Instance.AddScore(GameManager.GetFoodScore(_data.foodName));
             PlaySceneController.Instance.AddEatenDish(_data.foodName);
             StomachManager.Instance.SetCellState(_parentCells.Select(_ => (_, CellState.Empty)).ToList());
-            OnDiscard(); // TEMP
+            AudioManager.Instance.PlaySFX(SFXType.Digest);
+            OnDiscard(); // TEMP    
         }
 
         // This called when release the mouse on a invalid cell or outside the stomach

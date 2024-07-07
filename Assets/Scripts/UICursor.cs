@@ -27,7 +27,7 @@ public class UICursor : MonoBehaviour
             _image.sprite = catchCursor;
         }
         else if (Input.GetMouseButtonUp(0))
-        {
+        {   
             _image.sprite = releaseCursor;
         }
     }

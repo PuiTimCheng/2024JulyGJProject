@@ -86,6 +86,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             _clicked = false;
             GameCanvasUIManager.Instance.ShowInstruction();
+            AudioManager.Instance.PlayBGM(BGMType.Intro);
         }
 
         public void OnUpdateState()
@@ -110,6 +111,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         public PlayState()
         {
             _playtimer = new CountdownTimer(1);
+
         }
         public void OnEnterState()
         {
@@ -117,6 +119,8 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
             Instance.PlayData = new PlayData(); //reset all game data
             _playtimer.Reset(90);
             _playtimer.Start();
+            AudioManager.Instance.PlayBGM(BGMType.Game);
+            AudioManager.Instance.FadeInAmbience();
             
             Instance.foodConveyor.Initiate(new System.Random().Next());
             GameCanvasUIManager.Instance.playScoreUI.UpdateScore(Instance.PlayData.Score);
@@ -129,6 +133,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnExitState()
         {
+            AudioManager.Instance.FadeOutAmbience();
         }
 
         public bool IsTimesUp()
@@ -143,6 +148,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             GameCanvasUIManager.Instance.conclusionUI.Show();
             GameCanvasUIManager.Instance.conclusionUI.InitWithPlayDataResult(Instance.PlayData);
+            AudioManager.Instance.PlaySFX(SFXType.Receipt);
         }
 
         public void OnUpdateState()

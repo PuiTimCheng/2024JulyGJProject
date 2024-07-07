@@ -28,6 +28,8 @@ namespace Battle
             _curDraggingFood.SetRaycastAble(false);
             _curDraggingFood.transform.SetParent(transform);
             _curDraggingFood.GetComponent<RectTransform>().localScale = Vector3.one * StomachManager.Instance.rectTransform.localScale.x;
+            
+            AudioManager.Instance.PlaySFX(SFXType.Drag);
         }
 
         private void Update()
@@ -72,6 +74,10 @@ namespace Battle
                     pos /= allCells.Count;
 
                     _curDraggingFood.GetComponent<RectTransform>().position = pos;
+                }
+                else
+                {
+                    _curDraggingFood.GetComponent<RectTransform>().position = Camera.main.ScreenToWorldPoint(Input.mousePosition).Set(z:0);
                 }
                 
                 /*if (canPlace)
@@ -133,12 +139,17 @@ namespace Battle
                     StomachManager.Instance.SetCellState(eligibleCells
                         .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList(), _curDraggingFood);
                     _curDraggingFood = null;
+                    
+                    AudioManager.Instance.PlaySFX(SFXType.Place);
+
                 }
                 else
                 {
                     // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
                     _curDraggingFood.OnDiscard();
                     _curDraggingFood = null;
+                    AudioManager.Instance.PlaySFX(SFXType.Trash);
+                    AudioManager.Instance.PlaySFX(SFXType.Click);
                 }
             }
             else
@@ -146,6 +157,8 @@ namespace Battle
                 // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
                 _curDraggingFood.OnDiscard();
                 _curDraggingFood = null;
+                AudioManager.Instance.PlaySFX(SFXType.Trash);
+                AudioManager.Instance.PlaySFX(SFXType.Click);
             }
         }
 
