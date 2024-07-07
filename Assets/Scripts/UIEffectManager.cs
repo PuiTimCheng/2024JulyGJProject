@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIEffectManager : MonoBehaviour
 {
     public ParticleSystem BurstObject;
+    public ParticleSystem PoisonEffect;
     public TMP_Text text;
     private Sequence _textSequence;
 
@@ -17,6 +18,19 @@ public class UIEffectManager : MonoBehaviour
         text.rectTransform.anchoredPosition = pos;
 
         ShowText(pos, foodName);
+    }
+    
+    public void Poison(Vector3 pos)
+    {
+        var effect = Instantiate(PoisonEffect, transform);
+        effect.Play();
+        effect.GetComponent<RectTransform>().anchoredPosition = pos;
+        text.rectTransform.anchoredPosition = pos;
+
+        DOVirtual.DelayedCall(4, () =>
+        {
+            Destroy(effect.gameObject);
+        });
     }
 
     public void ShowText(Vector3 pos, FoodName foodName)
