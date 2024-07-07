@@ -174,7 +174,8 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     {
         public void OnEnterState()
         {
-            GameCanvasUIManager.Instance.conclusionUI.InitWithPlayDataResult(Instance.PlayData);
+            GameCanvasUIManager.Instance.conclusionUI.Show();
+            GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
             AudioManager.Instance.PlaySFX(SFXType.Receipt);
         }
 
