@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 1565948672906604300}
   - component: {fileID: 1565948672906604307}
   - component: {fileID: 1565948672906604306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,8 +294,8 @@ RectTransform:
   m_GameObject: {fileID: 1565948672906604305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3032544222925045795}
   - {fileID: 3032544222072713377}
@@ -5746,7 +5746,7 @@ GameObject:
   - component: {fileID: 3032544221643458622}
   - component: {fileID: 3032544221643458616}
   - component: {fileID: 3032544221643458623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10544,7 +10544,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -39
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -10588,7 +10588,7 @@ GameObject:
   - component: {fileID: 3032544222072713377}
   - component: {fileID: 3032544222072713379}
   - component: {fileID: 3032544222072713378}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15395,7 +15395,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -39
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -15439,7 +15439,7 @@ GameObject:
   - component: {fileID: 3032544222925045795}
   - component: {fileID: 3032544222925045805}
   - component: {fileID: 3032544222925045804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20201,7 +20201,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -39
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -20245,7 +20245,7 @@ GameObject:
   - component: {fileID: 3032544223008875256}
   - component: {fileID: 3032544223008875258}
   - component: {fileID: 3032544223008875257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire_glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25043,7 +25043,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -39
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -26490,7 +26490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 0}
   slider: {fileID: 6588337777968854461}
-  fireRect: {fileID: 0}
+  fireRect: {fileID: 1565948672906604300}
 --- !u!1 &7176706121808454859
 GameObject:
   m_ObjectHideFlags: 0
@@ -26735,7 +26735,7 @@ GameObject:
   - component: {fileID: 496047506925308210}
   - component: {fileID: 1904549465201023408}
   - component: {fileID: 7779253544457108327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31533,7 +31533,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -39
   m_RenderMode: 2
   m_MeshDistribution: 0
   m_SortMode: 0
