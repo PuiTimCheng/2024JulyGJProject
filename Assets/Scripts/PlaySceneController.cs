@@ -108,7 +108,6 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             _clicked = false;
             GameCanvasUIManager.Instance.ShowInstruction();
-            AudioManager.Instance.PlayBGM(BGMType.Intro);
         }
 
         public void OnUpdateState()
@@ -146,6 +145,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
             AudioManager.Instance.PlayBGM(BGMType.Game);
             AudioManager.Instance.FadeInAmbience();
             GameCanvasUIManager.Instance.playScoreUI.UpdateScore(Instance.PlayData.Score);
+            GameCanvasUIManager.Instance.StartAndEndText.ShowText("时间不多了哦，抓紧时间吃！");
             
             DOVirtual.DelayedCall(2, () =>
             {
@@ -165,7 +165,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnExitState()
         {
-            AudioManager.Instance.FadeOutAmbience();
+            AudioManager.Instance.PauseBGM();
         }
 
         public bool IsTimesUp()
@@ -182,12 +182,12 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
             showedResult = false;
             //stop everything 
             instance.foodConveyor.Stop();
+            GameCanvasUIManager.Instance.StartAndEndText.ShowText("时间到了！没把你撑着吧？");
             
             DOVirtual.DelayedCall(2, () =>
             {
                 GameCanvasUIManager.Instance.conclusionUI.Show();
                 GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
-                AudioManager.Instance.PlaySFX(SFXType.Receipt);
             });
         }
 
@@ -197,6 +197,7 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public void OnExitState()
         {
+            AudioManager.Instance.FadeOutAmbience();
         }
     }
 }

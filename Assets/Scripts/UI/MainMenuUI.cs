@@ -23,7 +23,10 @@ namespace UI
             });
             rankingBtn.onClick.AddListener(()=> { ClickButtonAnimation(rankingBtn, GameManager.Instance.ShowRanking); } );
             creditsBtn.onClick.AddListener(()=> { ClickButtonAnimation(creditsBtn, ShowCredits); } );
-            AudioManager.Instance.PlayBGM(BGMType.Menu);
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                AudioManager.Instance.PlayBGM(BGMType.Menu);
+            });
         }
 
         private void ClickButtonAnimation(Button btn, Action afterAcion)

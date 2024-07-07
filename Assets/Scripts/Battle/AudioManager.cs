@@ -25,7 +25,10 @@ public enum SFXType
     Tea,
     Start,
     Receipt,
-    Trash
+    Trash,
+    R_Start,
+    R_Print,
+    R_End
 }
 
 public class AudioManager : SerializedMonoBehaviour
@@ -89,13 +92,28 @@ public class AudioManager : SerializedMonoBehaviour
         
         _bgmFadeCoroutine = StartCoroutine(FadeInOut(clip));
     }
+
+    public void PauseBGM()
+    {
+        if (_currentSource.isPlaying)
+        {
+            _currentSource.Pause();
+        }
+    }
+
+    public void ResumeBGM()
+    {
+        if (!_currentSource.isPlaying)
+        {
+            _currentSource.Play();
+        }
+    }
     
 
     public void PlaySFX(SFXType sfx)
     {
         if (_sfxDic.TryGetValue(sfx, out var clip))
         {
-            Debug.Log($"Play SFX {sfx.ToString()}");
             _sfxSource.PlayOneShot(clip);
         }
     }
@@ -143,6 +161,8 @@ public class AudioManager : SerializedMonoBehaviour
 
     IEnumerator FadeInAmbienceCoroutine(AudioClip clip)
     {
+        Debug.Log("Fade in Amb");
+
         _ambSource.clip = clip;
         _ambSource.Play();
 
@@ -160,6 +180,7 @@ public class AudioManager : SerializedMonoBehaviour
 
     IEnumerator FadeOutAmbienceCoroutine()
     {
+        Debug.Log("Fade Out Amb");
         float timer = 0f;
 
         float initValue = _ambSource.volume;
