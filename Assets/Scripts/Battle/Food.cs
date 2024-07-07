@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,37 +16,40 @@ namespace Battle
         private List<Vector2Int> _parentCells;
         public CellsInfo<bool> Orientation => _data.GridConfig ?? null;
         private Plate _fromPlate;
+        private Sequence _selectEffectSequence;
         
         public FoodData _data;
         float _curTime;
         int _curPhase;
         bool _digesting;
-        
-        void Update()
-        {
-            if (_digesting)
-            {
-                _curTime += Time.deltaTime;
 
-                switch (_curPhase)
-                {
-                    case 0:
-                        //if (_curTime >= _data.Phase0Time)
-                        if (_curTime >= 8)
-                        {
-                            _curPhase++;
-                            // TODO: Add Cell VFX?
-                        }
-                        break;
-                    case 1:
-                        //if (_curTime >= _data.Phase1Time)
-                        if (_curTime >= 10)
-                        {
-                            OnDigest();
-                        }
-                        break;
-                }
-            }
+        public IEnumerator BeginDigest()
+        {
+            yield return new WaitForSeconds(6);
+            GameCanvasUIManager.Instance.uIEffectManager.Poison(GetComponent<RectTransform>().anchoredPosition);
+            ShowSelectEffect();
+            yield return new WaitForSeconds(4);
+            HideSelectEffect();
+            OnDigest();
+        }
+        
+        public void ShowSelectEffect()
+        {
+            _selectEffectSequence?.Kill(); 
+
+            var originalColor = _img.color;
+            var targetColor = Color.red;
+
+            _selectEffectSequence = DOTween.Sequence();
+            _selectEffectSequence.Append(_img.DOColor(targetColor, 0.7f).SetEase(Ease.InOutFlash));
+            _selectEffectSequence.Append(_img.DOColor(originalColor, 0.7f).SetEase(Ease.InOutFlash));
+            _selectEffectSequence.SetLoops(-1, LoopType.Yoyo);
+        }
+
+        public void HideSelectEffect()
+        {
+            _selectEffectSequence?.Kill();
+            _img.color = Color.white;
         }
 
         public void InitFood(FoodData data)
@@ -62,6 +67,7 @@ namespace Battle
             _curTime = 0;
             _curPhase = 0;
             _digesting = true;
+            StartCoroutine(BeginDigest());
         }
         
         public void OnBeginDrag(PointerEventData eventData)
