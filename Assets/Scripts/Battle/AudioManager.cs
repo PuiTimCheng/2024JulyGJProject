@@ -29,7 +29,8 @@ public enum SFXType
     R_Start,
     R_Print,
     R_End,
-    GameStart
+    GameStart,
+    leaderBoard,
 }
 
 public class AudioManager : SerializedMonoBehaviour
