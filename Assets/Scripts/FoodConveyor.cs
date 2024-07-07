@@ -60,7 +60,7 @@ public class FoodConveyor : MonoBehaviour
             plate.transform.position = spawnRectTransform.position.Offset(y:yOffset);
             plate.transform.SetParent(spawnedFoodParent);
             var rect = plate.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector2(800, 45);
+            rect.anchoredPosition = new Vector2(800, UnityEngine.Random.Range(-110, 150));  // Y值在-30到70之间随机
             rect.localScale = Vector3.one;
             
             _spawnTimer.Reset(spawnFoodInterval/ conveyorSpeed);    
