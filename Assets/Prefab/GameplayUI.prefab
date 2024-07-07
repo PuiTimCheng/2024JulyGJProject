@@ -26490,7 +26490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 0}
   slider: {fileID: 6588337777968854461}
-  fireRect: {fileID: 0}
+  fireRect: {fileID: 1565948672906604300}
 --- !u!1 &7176706121808454859
 GameObject:
   m_ObjectHideFlags: 0
