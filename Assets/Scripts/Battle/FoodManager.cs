@@ -1,5 +1,6 @@
 using System.Linq;
 using TimToolBox.Extensions;
+using UI.GameCanvasUIManager;
 using UnityEngine;
 
 namespace Battle
@@ -145,6 +146,8 @@ namespace Battle
             {
                 // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
                 _curDraggingFood.OnDiscard();
+                GameCanvasUIManager.Instance.trash.ShowText();
+                GameCanvasUIManager.Instance.uIEffectManager.Burst(_curDraggingFood.GetComponent<RectTransform>().anchoredPosition);
                 _curDraggingFood = null;
             }
         }

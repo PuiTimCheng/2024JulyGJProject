@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Battle;
+using DG.Tweening;
 using ImprovedTimers;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
@@ -136,11 +137,17 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         {
             GameCanvasUIManager.Instance.ShowGamePlayUI();
             Instance.PlayData = new PlayData(); //reset all game data
+
             _playtimer.Reset(90);
             _playtimer.Start();
-            
+
             Instance.foodConveyor.Initiate(new System.Random().Next());
             GameCanvasUIManager.Instance.playScoreUI.UpdateScore(Instance.PlayData.Score);
+            
+            DOVirtual.DelayedCall(2, () =>
+            {
+
+            });
         }
 
         public void OnUpdateState()

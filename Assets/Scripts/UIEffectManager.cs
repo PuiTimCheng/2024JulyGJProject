@@ -20,6 +20,24 @@ public class UIEffectManager : MonoBehaviour
         ShowText(pos, foodName);
     }
     
+    public void Burst(Vector3 pos)
+    {
+        var effect = Instantiate(BurstObject, transform);
+        effect.Play();
+        effect.GetComponent<RectTransform>().anchoredPosition = pos;
+        text.rectTransform.anchoredPosition = pos;
+
+        text.gameObject.SetActive(true);
+        text.rectTransform.anchoredPosition = pos;
+        text.text = $"浪费！#￥#￥";
+
+        _textSequence = DOTween.Sequence();
+        _textSequence.Append(text.transform.DOScale(1.2f, 0.3f)) // 在0.1秒内放大到1.2倍
+            .Append(text.transform.DOScale(1f, 0.1f)) // 然后在0.1秒内缩回到1倍
+            .AppendInterval(1f) // 等待1秒
+            .OnComplete(() => text.gameObject.SetActive(false));
+    }
+    
     public void Poison(Vector3 pos)
     {
         var effect = Instantiate(PoisonEffect, transform);
@@ -36,6 +54,7 @@ public class UIEffectManager : MonoBehaviour
     public void ShowText(Vector3 pos, FoodName foodName)
     {
         text.gameObject.SetActive(true);
+        text.rectTransform.anchoredPosition = pos;
         text.text = $"合成！{GetFoodLabel(foodName)}！";
 
         _textSequence = DOTween.Sequence();
