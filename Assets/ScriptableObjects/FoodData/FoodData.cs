@@ -34,6 +34,12 @@ namespace Battle
         [LabelText("番茄鱼")] TomatoAndFish,
         [LabelText("三明治")] BreadAndChicken,
         [LabelText("饺子")] ChickenAndBiscuit,
+        [LabelText("鲜虾面")] PrawnAndNoddle,
+        [LabelText("不是哥们")] PrawnAndPhone,
+        [LabelText("呀哈哈")] StoneAndLimb,
+        Limb,
+        Phone,
+        Pag
     }
 
     [Serializable]

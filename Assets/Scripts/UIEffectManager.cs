@@ -89,6 +89,12 @@ public class UIEffectManager : MonoBehaviour
                 return "三明治";
             case FoodName.ChickenAndBiscuit:
                 return "饺子";
+            case FoodName.PrawnAndNoddle:
+                return "鲜虾面";
+            case FoodName.PrawnAndPhone:
+                return "不是哥们";
+            case FoodName.StoneAndLimb:
+                return "呀哈哈";
             default:
                 return food.ToString();
         }
