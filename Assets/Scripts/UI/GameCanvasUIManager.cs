@@ -12,6 +12,8 @@ namespace UI.GameCanvasUIManager
         public PlayScoreUI playScoreUI;
         public UIEffectManager uIEffectManager;
         public IconAnimation iconAnimation;
+        public Tea tea;
+        public Trash trash;
 
         public void ShowInstruction()
         {

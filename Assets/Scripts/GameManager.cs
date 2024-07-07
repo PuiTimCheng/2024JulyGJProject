@@ -9,6 +9,7 @@ using UnityEngine.AddressableAssets;
 public class GameManager : PersistentSingleton<GameManager>
 {
     [SerializeField] MMF_Player loadPlayScenePlayer;
+    [SerializeField] MMF_Player loadComicScenePlayer;
     [SerializeField] MMF_Player loadMenuScenePlayer;
 
     public GameObject platePrefab;
@@ -67,6 +68,12 @@ public class GameManager : PersistentSingleton<GameManager>
         loadPlayScenePlayer.PlayFeedbacks();
     }
 
+    public void LoadComicScene()
+    {
+        loadComicScenePlayer.Initialization();
+        loadComicScenePlayer.PlayFeedbacks();
+    }
+    
     public void LoadMenuScene()
     {
         loadMenuScenePlayer.Initialization();

@@ -5,12 +5,11 @@ public class UICursor : MonoBehaviour
 {
     public Sprite catchCursor;
     public Sprite releaseCursor;
-    private Image _image;
+    public Image _image;
     private RectTransform _uiCursor;
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
         _uiCursor = GetComponent<RectTransform>();
         _image.sprite = releaseCursor;
 
