@@ -128,7 +128,8 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
     public class PlayState : IState
     {
         private CountdownTimer _playtimer;
-
+        private bool startedGame;
+        
         public PlayState()
         {
             _playtimer = new CountdownTimer(1);
@@ -136,20 +137,23 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
         }
         public void OnEnterState()
         {
+            startedGame = false;
+            
             GameCanvasUIManager.Instance.ShowGamePlayUI();
             Instance.PlayData = new PlayData(); //reset all game data
-
-            _playtimer.Reset(90);
-            _playtimer.Start();
+            
             AudioManager.Instance.PlayBGM(BGMType.Game);
             AudioManager.Instance.FadeInAmbience();
-            
-            Instance.foodConveyor.Initiate(new System.Random().Next());
             GameCanvasUIManager.Instance.playScoreUI.UpdateScore(Instance.PlayData.Score);
             
             DOVirtual.DelayedCall(2, () =>
             {
-
+                //after 2 second delay,
+                _playtimer.Reset(90);
+                _playtimer.Start();
+                startedGame = true;
+                
+                Instance.foodConveyor.Initiate(new System.Random().Next());
             });
         }
 
@@ -165,16 +169,24 @@ public class PlaySceneController : TimToolBox.Extensions.Singleton<PlaySceneCont
 
         public bool IsTimesUp()
         {
-            return _playtimer.IsFinished;
+            return startedGame && _playtimer.IsFinished;
         }
     }
     
     public class ConclusionState : IState
     {
-        public void OnEnterState()  
+        private bool showedResult;
+        public void OnEnterState()
         {
-            GameCanvasUIManager.Instance.conclusionUI.Show();
-            GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
+            showedResult = false;
+            //stop everything 
+            instance.foodConveyor.Stop();
+            
+            DOVirtual.DelayedCall(2, () =>
+            {
+                GameCanvasUIManager.Instance.conclusionUI.Show();
+                GameCanvasUIManager.Instance.conclusionUI.ShowWithPlayDataResult(Instance.PlayData);
+            });
         }
 
         public void OnUpdateState()

@@ -140,7 +140,6 @@ namespace Battle
                     StomachManager.Instance.SetCellState(eligibleCells
                         .Select(_ => (_, canPlace ? CellState.Occupied : CellState.Empty)).ToList(), _curDraggingFood);
                     _curDraggingFood = null;
-                    
                     AudioManager.Instance.PlaySFX(SFXType.Place);
 
                 }
@@ -149,6 +148,8 @@ namespace Battle
                     // TODO: this happen when player release the mouse on a invalid cell or outside the stomach, not sure it should go back or what, I'll leave it Destroy for now.
                     _curDraggingFood.OnDiscard();
                     _curDraggingFood = null;
+                    GameCanvasUIManager.Instance.trash.ShowText();
+                    GameCanvasUIManager.Instance.uIEffectManager.Burst(_curDraggingFood.GetComponent<RectTransform>().anchoredPosition);
                     AudioManager.Instance.PlaySFX(SFXType.Trash);
                     AudioManager.Instance.PlaySFX(SFXType.Click);
                 }

@@ -3,7 +3,6 @@ using Battle;
 using Sirenix.OdinInspector;
 using TimToolBox.Extensions;
 using UI.GameCanvasUIManager;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -104,7 +103,7 @@ public class Cell : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitH
             
             foreach (var formula in food._data.foodFormulas)
             {
-                if (formula.combineFood == neighborCell.food._data.foodName)
+                if (formula.combineFood == neighborCell.food.foodName)
                 {
                     StomachManager.Instance.Cells.DestroyCellByType(formula.combineFood);
                     food.UpgradeFood(formula.finalFood, formula.finalFoodSprite);
