@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9207170452278256180}
   - component: {fileID: 2825692790871698285}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: FloatScoreManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}

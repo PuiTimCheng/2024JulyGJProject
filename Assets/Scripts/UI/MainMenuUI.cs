@@ -29,6 +29,8 @@ namespace UI
             {
                 AudioManager.Instance.PlayBGM(BGMType.Menu);
             });
+            
+            AudioManager.Instance.FadeOutAmbience();
         }
 
         private void ClickButtonAnimation(Button btn, Action afterAcion)
