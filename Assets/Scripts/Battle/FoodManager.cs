@@ -48,7 +48,11 @@ namespace Battle
                 OnMouseUp();
             }
         }
-        
+
+        public void ClearFood()
+        {
+            transform.DestroyChildren();
+        }
         void OnMouseHold()
         {
             if (StomachManager.Instance.CurrentSelecting != null &&
