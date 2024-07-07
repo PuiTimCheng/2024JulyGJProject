@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 public class PlayScoreUI : MonoBehaviour
 {
-    [FormerlySerializedAs("timeText")] public TextMeshProUGUI scoreNumText;
+    public TextMeshProUGUI scoreNumText;
 
     public void UpdateScore(int score)
     {
